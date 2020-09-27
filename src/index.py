@@ -52,8 +52,8 @@ def repitencia():
 @app.route("/run2", methods=['GET'])
 def run_pro_reprobacion():
     if request.method == 'GET':
-        coe,mse,ve = pn.proyeccion_reprobacion()
-        return render_template('P_Reprobacion.html',ceo=coe,mse=mse,ve=ve)
+        m_coe,m_mse,m_ve,l_coe,l_mse,l_ve,r_coe,r_mse,r_ve = pn.proyeccion_reprobacion()
+        return render_template('P_Reprobacion.html',m_coe=m_coe,m_mse=m_mse,m_ve=m_ve,l_coe=l_coe,l_mse=l_mse,l_ve=l_ve,r_coe=r_coe,r_mse=r_mse,r_ve=r_ve)
 
 @app.route("/run3", methods=['GET'])
 def run_pro_desercion():
