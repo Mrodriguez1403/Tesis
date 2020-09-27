@@ -1,0 +1,48 @@
+{% extends "layout.html" %} {% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <link rel="stylesheet" href="{{url_for('static', filename= 'css/style.css') }}" />
+    <title>Subir Archivo CSV </title>
+    <!-- libreria jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="{{url_for('static', filename= 'js/validar.js')}}"></script> -->
+
+</head>
+
+<body>
+    <main id="contenedor">
+        <!-- formulario -->
+        <section class="formulario">
+
+            <!-- -->
+            <header>
+                <h1>Formulario para subir archivo CSV</h1>
+            </header>
+            <!-- -->
+
+            <!-- -->
+            <section>
+                <form action="/upload" name="frmSubirCSV" id="frmSubirCSV" method="post" enctype="multipart/form-data">
+                    <p><img src="{{url_for('static', filename='file/file.png') }}" alt="" class="imagen"></p>
+                    <h2>Subir archivo CSV</h2>
+                    <p><input type="file" name="archivo_csv" id="archivo_csv" accept=".csv"></p>
+                    <p><input type="submit" class="enviar_archivo separar_boton" value="Enviar archivo"></p>
+
+                </form>
+            </section>
+            <!-- -->
+
+        </section>
+        <!-- ./formulario -->
+
+    </main>
+    <!-- ./contenedor -->
+
+</body>
+
+</html>
+{% endblock %}

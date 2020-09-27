@@ -1,0 +1,15 @@
+{% extends "layout.html" %} {% block content %}
+
+<div class="jumbotron">
+    <h1 class="display-4">Graficas de Comparacion con el Metodo Restrospectivo de Regresion Lineal</h1>
+    <h2>Grafica de Reprobacion</h2>
+    <img src="{{ url_for('static', filename='file/p_s_reprobacion.png') }}" class="img-fluid" WIDTH="1200" HEIGHT="780" title="Grafica de Proyeccion hibrida de Reprobacion">
+    <h2>Grafica de Desercion</h2>
+    <img src="{{ url_for('static', filename='file/p_s_desercion.png') }}" class="img-fluid" WIDTH="1200" HEIGHT="780" title="Grafica de Proyeccion hibrida de Desercion">
+    <h2>Grafica de Repitencia</h2>
+    <img src="{{ url_for('static', filename='file/p_s_repitencia.png') }}" class="img-fluid" WIDTH="1200" HEIGHT="780" title="Grafica de Proyeccion hibrida de Repitencia">
+
+
+</div>
+
+{% endblock %}

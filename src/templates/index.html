@@ -1,0 +1,19 @@
+{% extends "layout.html" %} {% block content %}
+
+<div class="jumbotron">
+    <h1 class="display-6">Graficas de Tendencias de Riesgo en Educacion Media!</h1>
+    <p class="lead">Las siguientes graficas muestran la tasas de reprobacion, desercion y repeticion en los periodos del 2011 - 2019</p>
+    <hr class="my-4">
+    <img src="{{ url_for('static', filename='file/grafica_real.png') }}" class="img-fluid" WIDTH="1200" HEIGHT="780" title="Grafica Tendencias de Riesgo">
+    <p>Estos datos fueron estraidos de la base de datos del Ministerio de Educacion Nacional</p>
+    <a class="btn btn-primary btn-lg" href="{{url_for('p_reales')}}" role="button">Ver Proyecciones Reales</a>
+</div>
+
+<div class="jumbotron">
+    <h1 class="display-6">Graficas Sinteticas de Tendencias de Riesgo en Educacion Media!</h1>
+    <p class="lead">Las siguientes graficas muestran la tasas de reprobacion, desercion y repeticion en los periodos del 1970 - 2019</p>
+    <hr class="my-4">
+    <img src="{{ url_for('static', filename='file/grafica_sintetica.png') }}" class="img-fluid" WIDTH="1200" HEIGHT="780" title="Grafica Tendencias de Riesgo">
+    <a class="btn btn-primary btn-lg" href="{{url_for('p_sinteticas')}}" role="button">Ver Proyecciones Sinteticas</a>
+</div>
+{% endblock %}
