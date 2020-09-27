@@ -44,10 +44,13 @@ def proyeccion_reprobacion():
     print('DATOS DEL MODELO DE REPROBACION')
     print ('Regresión Mínimos Cuadrados Ordinarios')
     # Coeficiente
+    coe = lr.coef_
     print('Coeficientes:',lr.coef_)
     # MSE
+    mse = np.mean((y_pred - y_test) ** 2)
     print("Residual sum of squares: %.2f"% np.mean((y_pred - y_test) ** 2))
     # Varianza explicada
+    ve = lr.score(X_test,y_test)
     print('Varianza explicada: %.2f\n' % lr.score(X_test,y_test))
 
     print('Regresión Lasso') 
@@ -89,6 +92,7 @@ def proyeccion_reprobacion():
     # ax2.set_yticks(())
     fig1.savefig("static/file/proyeccion_reprobacion_2.png")
     # plt.show()
+    return coe,mse,ve
 
 
 def proyeccion_desercion():

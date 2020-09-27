@@ -6,7 +6,11 @@
     <img src="{{ url_for('static', filename='file/proyeccion_reprobacion_2.png') }}" class="img-fluid" WIDTH="1200" HEIGHT="780" title="Grafica de Proyeccion de Reprobacion">
     <a href="/run2" class="btn btn-primary" style="text-align: center;">proyeccion de reprobacion</a>
     <div class="container p-4">
-        {% block content2 %} {% endblock %}
+        <h2>Coeficiente : {{coe}}</h2>
+        <br>
+        <h2>Suma de Residuos al Cuadrado : {{mse}}</h2>
+        <br>
+        <h2>Varianza Explicada : {{ve}}</h2>
     </div>
     <a href="/test" class="btn btn-primary" style="text-align: right;">Guardar Datos</a>
 
