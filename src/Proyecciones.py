@@ -98,8 +98,12 @@ def proyeccion_reprobacion():
     # ax2.set_yticks(())
     fig1.savefig("static/file/proyeccion_reprobacion_2.png")
     # plt.show()
-    # modelo_reprobacion = [m_coe,m_mse,m_ve,l_coe,l_mse,l_ve,r_coe,r_mse,r_ve]
-    # savetxt('Modelos/modelo_r_reprobacion_2.csv', modelo_reprobacion, delimiter=',')
+    m_coe2 = str(m_coe)
+    l_coe2 = str(l_coe)
+    r_coe2 = str(l_coe)
+
+    modelo_reprobacion = [m_coe2,m_mse,m_ve,l_coe2,l_mse,l_ve,r_coe2,r_mse,r_ve]
+    savetxt('Modelos/modelo_r_reprobacion_3.csv', modelo_reprobacion, delimiter=',')
 
     return m_coe,m_mse,m_ve,l_coe,l_mse,l_ve,r_coe,r_mse,r_ve
 
