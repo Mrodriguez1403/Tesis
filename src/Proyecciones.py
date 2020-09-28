@@ -4,9 +4,19 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression,Lasso, Ridge
 import pandas as pd
 from sklearn.metrics import mean_squared_error
-from numpy import savetxt
+from numpy import savetxt, loadtxt
 
+def cargar_datos_reporbacion():
+    M = loadtxt('Modelos/modelo_r_reprobacion_2.csv', delimiter=',')
+    return M
 
+def cargar_datos_desercion():
+    M = loadtxt('Modelos/modelo_r_desercion_2.csv', delimiter=',')
+    return M
+
+def cargar_datos_repitencia():
+    M = loadtxt('Modelos/modelo_r_repitencia_2.csv', delimiter=',')
+    return M
 
 def proyeccion_reprobacion():
     datos=pd.read_csv('Datos/Datos_MEN.csv',header=0)
@@ -305,12 +315,12 @@ def proyeccion_repitencia():
     ax2.set_ylabel('Prediccion Repitencia Media')
     fig3.savefig("static/file/proyeccion_repitencia_2.png")
     # plt.show()
-    m_coe2 = m_coe
-    l_coe2 = l_coe
-    r_coe2 = r_coe
+    m_coe2 = m_coe[0]
+    l_coe2 = l_coe[0]
+    r_coe2 = r_coe[0]
 
     modelo_repitencia = [m_coe2,m_mse,m_ve,l_coe2,l_mse,l_ve,r_coe2,r_mse,r_ve]
-    savetxt('Modelos/modelo_r_repitencia_2.csv', modelo_repitencia,fmt="%s" , delimiter=',')
+    savetxt('Modelos/modelo_r_repitencia_2.csv', modelo_repitencia,fmt="%s", delimiter=',')
 
     return m_coe,m_mse,m_ve,l_coe,l_mse,l_ve,r_coe,r_mse,r_ve
     

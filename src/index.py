@@ -38,16 +38,21 @@ def test():
 
 @app.route('/reprobacion')
 def reprobacion():
-   return render_template('P_Reprobacion.html')
+    M = pn.cargar_datos_reporbacion()
+    return render_template('P_Reprobacion.html',m_coe=M[0],m_mse=M[1],m_ve=M[2],l_coe=M[3],l_mse=M[4],l_ve=M[5],r_coe=M[6],r_mse=M[7],r_ve=M[8])
    
 
 @app.route('/desercion')
 def desercion():
-   return render_template('P_Desercion.html')
+    M = pn.cargar_datos_desercion()
+    return render_template('P_Desercion.html',m_coe=M[0],m_mse=M[1],m_ve=M[2],l_coe=M[3],l_mse=M[4],l_ve=M[5],r_coe=M[6],r_mse=M[7],r_ve=M[8])
+   
 
 @app.route('/repitencia')
 def repitencia():
-   return render_template('P_Repitencia.html')
+    M = pn.cargar_datos_repitencia()
+    return render_template('P_Repitencia.html',m_coe=M[0],m_mse=M[1],m_ve=M[2],l_coe=M[3],l_mse=M[4],l_ve=M[5],r_coe=M[6],r_mse=M[7],r_ve=M[8])
+   
 
 @app.route("/run2", methods=['GET'])
 def run_pro_reprobacion():
