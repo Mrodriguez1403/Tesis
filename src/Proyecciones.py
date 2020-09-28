@@ -145,26 +145,35 @@ def proyeccion_desercion():
     print('DATOS DEL MODELO DE DESERCION')
     print ('Regresión Mínimos Cuadrados Ordinarios')
     # Coeficiente
+    m_coe = lr2.coef_
     print('Coeficientes:',lr2.coef_)
     # MSE
+    m_mse = "{0:.4f}".format(np.mean((y_pred2 - y_test2) ** 2))
     print("Residual sum of squares: %.2f"% np.mean((y_pred2 - y_test2) ** 2))
     # Varianza explicada
+    m_ve = "{0:.4f}".format(lr2.score(X_test2,y_test2))
     print('Varianza explicada: %.2f\n' % lr2.score(X_test2,y_test2))
 
     print('Regresión Lasso') 
     # Coeficiente
+    l_coe = rgl2.coef_
     print('Coeficientes:', rgl2.coef_)
     # MSE
+    l_mse = "{0:.4f}".format(np.mean((y_predrgl2 - y_test2) ** 2))
     print("Residual sum of squares: %.2f"% np.mean((y_predrgl2 - y_test2) ** 2))
     # Varianza explicada
+    l_ve = "{0:.4f}".format(rgl2.score(X_test2, y_test2))
     print('Varianza explicada: %.2f\n' % rgl2.score(X_test2, y_test2))
 
     print('Regresión Ridge')
     #Coeficiente
+    r_coe = rgr2.coef_
     print('Coeficientes:', rgr2.coef_)
     # MSE
+    r_mse = "{0:.4f}".format(np.mean((y_predrgr2 - y_test2) ** 2))
     print("Residual sum of squares: %.2f"% np.mean((y_predrgr2 - y_test2) ** 2))
     # Varianza explicada
+    r_ve = "{0:.4f}".format(rgr2.score(X_test2,y_test2))
     print('Varianza explicada: %.2f\n' % rgr2.score(X_test2,y_test2))
 
     fig2 = plt.figure(figsize=(12,8), dpi=120)
@@ -187,6 +196,8 @@ def proyeccion_desercion():
     ax2.set_ylabel('Prediccion Desercion Media')
     fig2.savefig("static/file/proyeccion_desercion_2.png")
     # plt.show()
+    return m_coe,m_mse,m_ve,l_coe,l_mse,l_ve,r_coe,r_mse,r_ve
+
 
 def proyeccion_repitencia():
     datos=pd.read_csv('Datos/Datos_MEN.csv',header=0)
@@ -230,26 +241,35 @@ def proyeccion_repitencia():
     print('DATOS DEL MODELO DE REPITENCIA')
     print ('Regresión Mínimos Cuadrados Ordinarios')
     # Coeficiente
+    m_coe = lr3.coef_
     print('Coeficientes:',lr3.coef_)
     # MSE
+    m_mse = "{0:.4f}".format(np.mean((y_pred3 - y_test3) ** 2))
     print("Residual sum of squares: %.2f"% np.mean((y_pred3 - y_test3) ** 2))
     # Varianza explicada
+    m_ve = "{0:.4f}".format(lr3.score(X_test3,y_test3))
     print('Varianza explicada: %.2f\n' % lr3.score(X_test3,y_test3))
 
     print('Regresión Lasso') 
     # Coeficiente
+    l_coe =  rgl3.coef_
     print('Coeficientes:', rgl3.coef_)
     # MSE
+    l_mse = "{0:.4f}".format(np.mean((y_predrgl3 - y_test3) ** 2))
     print("Residual sum of squares: %.2f"% np.mean((y_predrgl3 - y_test3) ** 2))
     # Varianza explicada
+    l_ve = "{0:.4f}".format(rgl3.score(X_test3, y_test3))
     print('Varianza explicada: %.2f\n' % rgl3.score(X_test3, y_test3))
 
     print('Regresión Ridge')
     #Coeficiente
+    r_coe = rgr3.coef_
     print('Coeficientes:', rgr3.coef_)
     # MSE
+    r_mse = "{0:.4f}".format(np.mean((y_predrgr3 - y_test3) ** 2))
     print("Residual sum of squares: %.2f"% np.mean((y_predrgr3 - y_test3) ** 2))
     # Varianza explicada
+    r_ve = "{0:.4f}".format(rgr3.score(X_test3,y_test3))
     print('Varianza explicada: %.2f\n' % rgr3.score(X_test3,y_test3))
 
 
@@ -273,5 +293,6 @@ def proyeccion_repitencia():
     ax2.set_ylabel('Prediccion Repitencia Media')
     fig3.savefig("static/file/proyeccion_repitencia_2.png")
     # plt.show()
+    return m_coe,m_mse,m_ve,l_coe,l_mse,l_ve,r_coe,r_mse,r_ve
     
 
