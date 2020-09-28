@@ -98,12 +98,13 @@ def proyeccion_reprobacion():
     # ax2.set_yticks(())
     fig1.savefig("static/file/proyeccion_reprobacion_2.png")
     # plt.show()
-    m_coe2 = str(m_coe)
-    l_coe2 = str(l_coe)
-    r_coe2 = str(l_coe)
+
+    m_coe2 = m_coe[0]
+    l_coe2 = l_coe[0]
+    r_coe2 = r_coe[0]
 
     modelo_reprobacion = [m_coe2,m_mse,m_ve,l_coe2,l_mse,l_ve,r_coe2,r_mse,r_ve]
-    savetxt('Modelos/modelo_r_reprobacion_3.csv', modelo_reprobacion, delimiter=',')
+    savetxt('Modelos/modelo_r_reprobacion_2.csv', modelo_reprobacion, fmt="%s" ,delimiter=',')
 
     return m_coe,m_mse,m_ve,l_coe,l_mse,l_ve,r_coe,r_mse,r_ve
 
@@ -200,6 +201,13 @@ def proyeccion_desercion():
     ax2.set_ylabel('Prediccion Desercion Media')
     fig2.savefig("static/file/proyeccion_desercion_2.png")
     # plt.show()
+    m_coe2 = m_coe[0]
+    l_coe2 = l_coe[0]
+    r_coe2 = r_coe[0]
+
+    modelo_desercion = [m_coe2,m_mse,m_ve,l_coe2,l_mse,l_ve,r_coe2,r_mse,r_ve]
+    savetxt('Modelos/modelo_r_desercion_2.csv', modelo_desercion,fmt="%s" , delimiter=',')
+
     return m_coe,m_mse,m_ve,l_coe,l_mse,l_ve,r_coe,r_mse,r_ve
 
 
@@ -297,6 +305,13 @@ def proyeccion_repitencia():
     ax2.set_ylabel('Prediccion Repitencia Media')
     fig3.savefig("static/file/proyeccion_repitencia_2.png")
     # plt.show()
+    m_coe2 = m_coe
+    l_coe2 = l_coe
+    r_coe2 = r_coe
+
+    modelo_repitencia = [m_coe2,m_mse,m_ve,l_coe2,l_mse,l_ve,r_coe2,r_mse,r_ve]
+    savetxt('Modelos/modelo_r_repitencia_2.csv', modelo_repitencia,fmt="%s" , delimiter=',')
+
     return m_coe,m_mse,m_ve,l_coe,l_mse,l_ve,r_coe,r_mse,r_ve
     
 
