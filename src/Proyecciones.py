@@ -200,6 +200,7 @@ def proyeccion_desercion():
     ax.set_xlabel('Periodos') 
     ax.set_ylabel('Tasa de Desercion')
     ax.set_title('Grafica de Desercion')
+  
 
     ax2 = fig2.add_subplot(2, 1, 2)
     ax2.scatter(X_test2,y_test2, color='black')
