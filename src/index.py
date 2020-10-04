@@ -72,6 +72,13 @@ def run_pro_repitencia():
         m_coe,m_mse,m_ve,l_coe,l_mse,l_ve,r_coe,r_mse,r_ve = pn.proyeccion_repitencia()
         return render_template('P_Repitencia.html',m_coe=m_coe,m_mse=m_mse,m_ve=m_ve,l_coe=l_coe,l_mse=l_mse,l_ve=l_ve,r_coe=r_coe,r_mse=r_mse,r_ve=r_ve)
 
+@app.route("/guardar_reprobacion", methods=['GET'])
+def guardar_reprobacion():
+    if request.method == 'GET':
+        pn.guardar_modelo_reprobacion()
+        m_coe,m_mse,m_ve,l_coe,l_mse,l_ve,r_coe,r_mse,r_ve = pn.proyeccion_reprobacion()
+        return render_template('P_Reprobacion.html',m_coe=m_coe,m_mse=m_mse,m_ve=m_ve,l_coe=l_coe,l_mse=l_mse,l_ve=l_ve,r_coe=r_coe,r_mse=r_mse,r_ve=r_ve)
+
 
 if __name__ == "__main__":
     app.run(debug=True)

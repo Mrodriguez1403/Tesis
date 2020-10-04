@@ -6,6 +6,8 @@ from joblib import dump, load
 import pandas as pd
 from sklearn.metrics import mean_squared_error
 from numpy import savetxt, loadtxt
+import datetime
+import os
 
 def cargar_datos_reporbacion():
     M = loadtxt('Modelos/Datos_entrenados/modelo_r_reprobacion.csv', delimiter=',')
@@ -21,15 +23,19 @@ def cargar_datos_repitencia():
 
 
 def guardar_modelo_reprobacion():
+    dest = "Modelos/Seleccionados"
+    new_dir = os.path.join(dest, datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S"))
+    os.makedirs(new_dir)
     lr= LinearRegression()
     rgl = Lasso(alpha=.5)
     rgr = Ridge(alpha=.5)
     lr = load('Modelos/Entrenados/lr_reprobacion.pkl')
     rgl = load('Modelos/Entrenados/rgl_reprobacion.pkl')
     rgr = load('Modelos/Entrenados/rgr_reprobacion.pkl')
-    dump(lr, 'Modelos/Seleccionados/lr_reprobacion.pkl')
-    dump(rgl, 'Modelos/Seleccionados/rgl_reprobacion.pkl')
-    dump(rgr, 'Modelos/Seleccionados/rgr_reprobacion.pkl')
+    dump(lr,new_dir+'/lr_reprobacion.pkl')
+    dump(rgl,new_dir+'/rgl_reprobacion.pkl')
+    dump(rgr,new_dir+'/rgr_reprobacion.pkl')
+    
 
 def guardar_modelo_desercion():
     lr= LinearRegression()
@@ -153,9 +159,6 @@ def proyeccion_reprobacion():
     m_coe2 = m_coe[0]
     l_coe2 = l_coe[0]
     r_coe2 = r_coe[0]
-    print("y_predi",y_pred)
-    print("y_predi2",y_predrgl)
-    print("y_predi3",y_predrgr)
 
     modelo_reprobacion = [m_coe2,m_mse,m_ve,l_coe2,l_mse,l_ve,r_coe2,r_mse,r_ve]
     savetxt('Modelos/Datos_entrenados/modelo_r_reprobacion.csv', modelo_reprobacion, fmt="%s" ,delimiter=',')
