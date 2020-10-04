@@ -41,9 +41,9 @@ def proyeccion_reprobacion():
     rgr = Ridge(alpha=.5)
     
     # Guardar modelos
-    dump(lr, '/Modelos/Entrenados/lr_reprobacion.pkl')
-    dump(rgl, '/Modelos/Entrenados/rgl_reprobacion.pkl')
-    dump(rgr, '/Modelos/Entrenados/rgr_reprobacion.pkl')
+    dump(lr, 'Modelos/Entrenados/lr_reprobacion.pkl')
+    dump(rgl, 'Modelos/Entrenados/rgl_reprobacion.pkl')
+    dump(rgr, 'Modelos/Entrenados/rgr_reprobacion.pkl')
 
     # #entreno el modelo
 
@@ -158,9 +158,9 @@ def proyeccion_desercion():
     rgr2.fit(X_train2, y_train2)
 
     # Guardar Modelos
-    dump(lr2, '/Modelos/Entrenados/lr_desercion.pkl')
-    dump(rgl2, '/Modelos/Entrenados/rgl_desercion.pkl')
-    dump(rgr2, '/Modelos/Entrenados/rgr_desercion.pkl')
+    dump(lr2, 'Modelos/Entrenados/lr_desercion.pkl')
+    dump(rgl2, 'Modelos/Entrenados/rgl_desercion.pkl')
+    dump(rgr2, 'Modelos/Entrenados/rgr_desercion.pkl')
 
     #realizamos la prediccion
 
@@ -267,9 +267,9 @@ def proyeccion_repitencia():
 
 
     # Guardar Modelos
-    dump(lr3, '/Modelos/Entrenados/lr_repitencia.pkl')
-    dump(rgl3, '/Modelos/Entrenados/rgl_repitencia.pkl')
-    dump(rgr3, '/Modelos/Entrenados/rgr_repitencia.pkl')
+    dump(lr3, 'Modelos/Entrenados/lr_repitencia.pkl')
+    dump(rgl3, 'Modelos/Entrenados/rgl_repitencia.pkl')
+    dump(rgr3, 'Modelos/Entrenados/rgr_repitencia.pkl')
 
     #realizamos la prediccion
 
