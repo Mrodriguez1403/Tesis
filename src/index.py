@@ -79,6 +79,20 @@ def guardar_reprobacion():
         m_coe,m_mse,m_ve,l_coe,l_mse,l_ve,r_coe,r_mse,r_ve = pn.proyeccion_reprobacion()
         return render_template('P_Reprobacion.html',m_coe=m_coe,m_mse=m_mse,m_ve=m_ve,l_coe=l_coe,l_mse=l_mse,l_ve=l_ve,r_coe=r_coe,r_mse=r_mse,r_ve=r_ve)
 
+@app.route("/guardar_desercion", methods=['GET'])
+def guardar_desercion():
+    if request.method == 'GET':
+        pn.guardar_modelo_desercion()
+        m_coe,m_mse,m_ve,l_coe,l_mse,l_ve,r_coe,r_mse,r_ve = pn.proyeccion_desercion()
+        return render_template('P_Desercion.html',m_coe=m_coe,m_mse=m_mse,m_ve=m_ve,l_coe=l_coe,l_mse=l_mse,l_ve=l_ve,r_coe=r_coe,r_mse=r_mse,r_ve=r_ve)
+
+@app.route("/guardar_repitencia", methods=['GET'])
+def guardar_repitencia():
+    if request.method == 'GET':
+        pn.guardar_modelo_repitencia()
+        m_coe,m_mse,m_ve,l_coe,l_mse,l_ve,r_coe,r_mse,r_ve = pn.proyeccion_repitencia()
+        return render_template('P_Repitencia.html',m_coe=m_coe,m_mse=m_mse,m_ve=m_ve,l_coe=l_coe,l_mse=l_mse,l_ve=l_ve,r_coe=r_coe,r_mse=r_mse,r_ve=r_ve)
+
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -23,18 +23,31 @@ def cargar_datos_repitencia():
 
 
 def guardar_modelo_reprobacion():
-    dest = "Modelos/Seleccionados"
-    new_dir = os.path.join(dest, datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S"))
-    os.makedirs(new_dir)
     lr= LinearRegression()
     rgl = Lasso(alpha=.5)
     rgr = Ridge(alpha=.5)
     lr = load('Modelos/Entrenados/lr_reprobacion.pkl')
     rgl = load('Modelos/Entrenados/rgl_reprobacion.pkl')
     rgr = load('Modelos/Entrenados/rgr_reprobacion.pkl')
-    dump(lr,new_dir+'/lr_reprobacion.pkl')
-    dump(rgl,new_dir+'/rgl_reprobacion.pkl')
-    dump(rgr,new_dir+'/rgr_reprobacion.pkl')
+
+    fecha =  datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
+    dest_m = "Modelos/Seleccionados"
+    dest_d = "Modelos/Datos_Seleccionados"
+    # dest_g = "static/file/graficas_seleccionadass"
+    dir_m = os.path.join(dest_m,fecha)
+    dir_d = os.path.join(dest_d,fecha)
+    # dir_g = os.path.join(dest_g,fecha)
+    os.makedirs(dir_m)
+    os.makedirs(dir_d)
+    # os.makedirs(dir_g)
+    
+    dump(lr,dir_m+'/lr_reprobacion.pkl')
+    dump(rgl,dir_m+'/rgl_reprobacion.pkl')
+    dump(rgr,dir_m+'/rgr_reprobacion.pkl')
+
+    datos = cargar_datos_reporbacion()
+    savetxt(dir_d+'/modelo_r_reprobacion.csv', datos, fmt="%s" ,delimiter=',')
+
     
 
 def guardar_modelo_desercion():
@@ -44,9 +57,26 @@ def guardar_modelo_desercion():
     lr = load('Modelos/Entrenados/lr_desercion.pkl')
     rgl = load('Modelos/Entrenados/rgl_desercion.pkl')
     rgr = load('Modelos/Entrenados/rgr_desercion.pkl')
-    dump(lr, 'Modelos/Seleccionados/lr_desercion.pkl')
-    dump(rgl, 'Modelos/Seleccionados/rgl_desercion.pkl')
-    dump(rgr, 'Modelos/Seleccionados/rgr_desercion.pkl')
+
+    fecha =  datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
+    dest_m = "Modelos/Seleccionados"
+    dest_d = "Modelos/Datos_Seleccionados"
+    # dest_g = "static/file/graficas_seleccionadass"
+    dir_m = os.path.join(dest_m,fecha)
+    dir_d = os.path.join(dest_d,fecha)
+    # dir_g = os.path.join(dest_g,fecha)
+    os.makedirs(dir_m)
+    os.makedirs(dir_d)
+    # os.makedirs(dir_g)
+    
+    dump(lr,dir_m+'/lr_desercion.pkl')
+    dump(rgl,dir_m+'/rgl_desercion.pkl')
+    dump(rgr,dir_m+'/rgr_desercion.pkl')
+
+    datos = cargar_datos_desercion()
+    savetxt(dir_d+'/modelo_r_desercion.csv', datos, fmt="%s" ,delimiter=',')
+
+
 
 def guardar_modelo_repitencia():
     lr= LinearRegression()
@@ -55,9 +85,24 @@ def guardar_modelo_repitencia():
     lr = load('Modelos/Entrenados/lr_repitencia.pkl')
     rgl = load('Modelos/Entrenados/rgl_repitencia.pkl')
     rgr = load('Modelos/Entrenados/rgr_repitencia.pkl')
-    dump(lr, 'Modelos/Seleccionados/lr_repitencia.pkl')
-    dump(rgl, 'Modelos/Seleccionados/rgl_repitencia.pkl')
-    dump(rgr, 'Modelos/Seleccionados/rgr_repitencia.pkl')
+
+    fecha =  datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
+    dest_m = "Modelos/Seleccionados"
+    dest_d = "Modelos/Datos_Seleccionados"
+    # dest_g = "static/file/graficas_seleccionadass"
+    dir_m = os.path.join(dest_m,fecha)
+    dir_d = os.path.join(dest_d,fecha)
+    # dir_g = os.path.join(dest_g,fecha)
+    os.makedirs(dir_m)
+    os.makedirs(dir_d)
+    # os.makedirs(dir_g)
+    
+    dump(lr,dir_m+'/lr_repitencia.pkl')
+    dump(rgl,dir_m+'/rgl_repitencia.pkl')
+    dump(rgr,dir_m+'/rgr_repitencia.pkl')
+
+    datos = cargar_datos_repitencia()
+    savetxt(dir_d+'/modelo_r_repitencia.csv', datos, fmt="%s" ,delimiter=',')
 
 
 def proyeccion_reprobacion():
