@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression,Lasso, Ridge
+from joblib import dump, load
 import pandas as pd
 from sklearn.metrics import mean_squared_error
 from numpy import savetxt, loadtxt
@@ -34,10 +35,15 @@ def proyeccion_reprobacion():
     # Reprobacion media
     X_train, X_test, y_train, y_test = train_test_split(X, y,test_size=0.5)
 
-     # Reprobacion media
+    # Reprobacion media
     lr= LinearRegression()
     rgl = Lasso(alpha=.5)
     rgr = Ridge(alpha=.5)
+    
+    # Guardar modelos
+    dump(lr, '/Modelos/Entrenados/lr_reprobacion.pkl')
+    dump(rgl, '/Modelos/Entrenados/rgl_reprobacion.pkl')
+    dump(rgr, '/Modelos/Entrenados/rgr_reprobacion.pkl')
 
     # #entreno el modelo
 
@@ -112,6 +118,9 @@ def proyeccion_reprobacion():
     m_coe2 = m_coe[0]
     l_coe2 = l_coe[0]
     r_coe2 = r_coe[0]
+    print("y_predi",y_pred)
+    print("y_predi2",y_predrgl)
+    print("y_predi3",y_predrgr)
 
     modelo_reprobacion = [m_coe2,m_mse,m_ve,l_coe2,l_mse,l_ve,r_coe2,r_mse,r_ve]
     savetxt('Modelos/modelo_r_reprobacion_2.csv', modelo_reprobacion, fmt="%s" ,delimiter=',')
@@ -147,6 +156,11 @@ def proyeccion_desercion():
     lr2.fit(X_train2, y_train2)
     rgl2.fit(X_train2, y_train2)
     rgr2.fit(X_train2, y_train2)
+
+    # Guardar Modelos
+    dump(lr2, '/Modelos/Entrenados/lr_desercion.pkl')
+    dump(rgl2, '/Modelos/Entrenados/rgl_desercion.pkl')
+    dump(rgr2, '/Modelos/Entrenados/rgr_desercion.pkl')
 
     #realizamos la prediccion
 
@@ -251,6 +265,11 @@ def proyeccion_repitencia():
     rgl3.fit(X_train3, y_train3)
     rgr3.fit(X_train3, y_train3)
 
+
+    # Guardar Modelos
+    dump(lr3, '/Modelos/Entrenados/lr_repitencia.pkl')
+    dump(rgl3, '/Modelos/Entrenados/rgl_repitencia.pkl')
+    dump(rgr3, '/Modelos/Entrenados/rgr_repitencia.pkl')
 
     #realizamos la prediccion
 
