@@ -38,7 +38,7 @@ def guardar_modelo_reprobacion():
     dir_d = os.path.join(dest_d,fecha)
     # dir_g = os.path.join(dest_g,fecha)
     os.makedirs(dir_m)
-    os.makedirs(dir_d)
+    os.makedirs(dir_d)  
     # os.makedirs(dir_g)
     
     dump(lr,dir_m+'/lr_reprobacion.pkl')
@@ -131,6 +131,7 @@ def proyeccion_reprobacion():
     dump(rgl, 'Modelos/Entrenados/rgl_reprobacion.pkl')
     dump(rgr, 'Modelos/Entrenados/rgr_reprobacion.pkl')
 
+    print("los modelos han sido guardados")
     # #entreno el modelo
 
     # Reprobacion media
