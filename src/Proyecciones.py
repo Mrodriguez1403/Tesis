@@ -131,7 +131,6 @@ def proyeccion_reprobacion():
     dump(rgl, 'Modelos/Entrenados/rgl_reprobacion.pkl')
     dump(rgr, 'Modelos/Entrenados/rgr_reprobacion.pkl')
 
-    print("los modelos han sido guardados")
     # #entreno el modelo
 
     # Reprobacion media
