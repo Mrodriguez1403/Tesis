@@ -7,7 +7,7 @@ import pandas as pd
 from sklearn.metrics import mean_squared_error
 from numpy import savetxt, loadtxt
 import datetime
-import os
+import os, shutil
 
 def cargar_datos_reporbacion():
     M = loadtxt('Modelos/Datos_entrenados/modelo_r_reprobacion.csv', delimiter=',')
@@ -21,6 +21,11 @@ def cargar_datos_repitencia():
     M = loadtxt('Modelos/Datos_entrenados/modelo_r_repitencia.csv', delimiter=',')
     return M
 
+def elimiar_modelos_reprobacion():
+    os.remove('Modelos/Entrenados/lr_reprobacion.pkl')
+    os.remove('Modelos/Entrenados/rgl_reprobacion.pkl')
+    os.remove('Modelos/Entrenados/rgr_reprobacion.pkl')
+
 
 def guardar_modelo_reprobacion():
     lr= LinearRegression()
@@ -33,13 +38,15 @@ def guardar_modelo_reprobacion():
     fecha =  datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
     dest_m = "Modelos/Seleccionados"
     dest_d = "Modelos/Datos_Seleccionados"
-    # dest_g = "static/file/graficas_seleccionadass"
+    dest_g = "static/file/seleccionados"
     dir_m = os.path.join(dest_m,fecha)
     dir_d = os.path.join(dest_d,fecha)
-    # dir_g = os.path.join(dest_g,fecha)
+    dir_g = os.path.join(dest_g,fecha)
     os.makedirs(dir_m)
     os.makedirs(dir_d)  
-    # os.makedirs(dir_g)
+    os.makedirs(dir_g)
+
+    shutil.copyfile("static/file/proyeccion_reprobacion_2.png",dir_g+"/regresion_reprobacion.png")
     
     dump(lr,dir_m+'/lr_reprobacion.pkl')
     dump(rgl,dir_m+'/rgl_reprobacion.pkl')
@@ -47,6 +54,7 @@ def guardar_modelo_reprobacion():
 
     datos = cargar_datos_reporbacion()
     savetxt(dir_d+'/modelo_r_reprobacion.csv', datos, fmt="%s" ,delimiter=',')
+    
 
     
 
@@ -75,6 +83,9 @@ def guardar_modelo_desercion():
 
     datos = cargar_datos_desercion()
     savetxt(dir_d+'/modelo_r_desercion.csv', datos, fmt="%s" ,delimiter=',')
+    os.remove('Modelos/Entrenados/lr_desercion.pkl')
+    os.remove('Modelos/Entrenados/rgl_desercion.pkl')
+    os.remove('Modelos/Entrenados/rgr_desercion.pkl')
 
 
 
@@ -103,6 +114,9 @@ def guardar_modelo_repitencia():
 
     datos = cargar_datos_repitencia()
     savetxt(dir_d+'/modelo_r_repitencia.csv', datos, fmt="%s" ,delimiter=',')
+    os.remove('Modelos/Entrenados/lr_repitencia.pkl')
+    os.remove('Modelos/Entrenados/rgl_repitencia.pkl')
+    os.remove('Modelos/Entrenados/rgr_repitencia.pkl')
 
 
 def proyeccion_reprobacion():
