@@ -23,31 +23,40 @@
             <ul class="navbar-nav ml-auto">
 
                 <li class="nav-item active">
-                    <a class="nav-link" href="/">Home </a>
+                    <a class="nav-link" href="/">Graficas Riesgo</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('p_reales')}}">Proyecciones Reales</a>
+                    <a class="nav-link" href="{{url_for('p_reales')}}">Regresiones Reales</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('p_sinteticas')}}">Proyecciones Sinteticas</a>
+                    <a class="nav-link" href="{{url_for('p_sinteticas')}}">Regresiones Sinteticas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('cargar')}}">Subir Archivo CSV</a>
+                    <a class="nav-link" href="{{url_for('cargar')}}">Importar Data MEN</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Proyecciones Reales
+                      Regresiones Reales
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/reprobacion">Reprobacion</a>
+                        <a class="dropdown-item" href="/Reg_reprobacion">Reprobacion</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/desercion">Desercion</a>
+                        <a class="dropdown-item" href="/Reg_desercion">Desercion</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/repitencia">Repitencia</a>
+                        <a class="dropdown-item" href="/Reg_repitencia">Repitencia</a>
                     </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('proyecciones')}}">Generar Proyecciones</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Generar Proyecciones
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/Pro_reprobacion">Reprobacion</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/Pro_desercion">Desercion</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/Pro_repitencia">Repitencia</a>
+                    </div>
                 </li>
             </ul>
         </div>

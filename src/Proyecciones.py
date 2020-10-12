@@ -21,6 +21,28 @@ def cargar_rutas_repitencia():
     R  = loadtxt('Modelos/Rutas/ruta_repitencia.csv', dtype="str", delimiter=',')
     return R
 
+    
+def cargar_lista_reprobacion():
+    R  = cargar_rutas_reprobacion()
+    lista = []
+    for i in range(0,len(R),4):
+        lista.append(R[i])
+    return lista
+
+def cargar_lista_desercion():
+    R  = cargar_rutas_desercion()
+    lista = []
+    for i in range(0,len(R),4):
+        lista.append(R[i])
+    return lista
+
+def cargar_lista_repitencia():
+    R  = cargar_rutas_repitencia()
+    lista = []
+    for i in range(0,len(R),4):
+        lista.append(R[i])
+    return lista
+
 
 def cargar_datos_reporbacion():
     M = loadtxt('Modelos/Datos_entrenados/modelo_r_reprobacion.csv', delimiter=',')

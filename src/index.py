@@ -36,22 +36,22 @@ def uploader():
 def test():
      return render_template('test.html')
 
-@app.route('/reprobacion')
-def reprobacion():
+@app.route('/Reg_reprobacion')
+def Reg_reprobacion():
     M = pn.cargar_datos_reporbacion()
-    return render_template('P_Reprobacion.html',m_coe=M[0],m_mse=M[1],m_ve=M[2],l_coe=M[3],l_mse=M[4],l_ve=M[5],r_coe=M[6],r_mse=M[7],r_ve=M[8])
+    return render_template('Reg_Reprobacion.html',m_coe=M[0],m_mse=M[1],m_ve=M[2],l_coe=M[3],l_mse=M[4],l_ve=M[5],r_coe=M[6],r_mse=M[7],r_ve=M[8])
    
 
-@app.route('/desercion')
-def desercion():
+@app.route('/Reg_desercion')
+def Reg_desercion():
     M = pn.cargar_datos_desercion()
-    return render_template('P_Desercion.html',m_coe=M[0],m_mse=M[1],m_ve=M[2],l_coe=M[3],l_mse=M[4],l_ve=M[5],r_coe=M[6],r_mse=M[7],r_ve=M[8])
+    return render_template('Reg_Desercion.html',m_coe=M[0],m_mse=M[1],m_ve=M[2],l_coe=M[3],l_mse=M[4],l_ve=M[5],r_coe=M[6],r_mse=M[7],r_ve=M[8])
    
 
-@app.route('/repitencia')
-def repitencia():
+@app.route('/Reg_repitencia')
+def Reg_repitencia():
     M = pn.cargar_datos_repitencia()
-    return render_template('P_Repitencia.html',m_coe=M[0],m_mse=M[1],m_ve=M[2],l_coe=M[3],l_mse=M[4],l_ve=M[5],r_coe=M[6],r_mse=M[7],r_ve=M[8])
+    return render_template('Reg_Repitencia.html',m_coe=M[0],m_mse=M[1],m_ve=M[2],l_coe=M[3],l_mse=M[4],l_ve=M[5],r_coe=M[6],r_mse=M[7],r_ve=M[8])
    
 
 @app.route("/run2", methods=['GET'])
@@ -96,13 +96,20 @@ def guardar_repitencia():
         M = pn.cargar_datos_repitencia()
         return render_template('P_Repitencia.html',m_coe=M[0],m_mse=M[1],m_ve=M[2],l_coe=M[3],l_mse=M[4],l_ve=M[5],r_coe=M[6],r_mse=M[7],r_ve=M[8])
 
-@app.route("/proyecciones")
-def proyecciones():
-    r_reprobacion = pn.cargar_rutas_reprobacion()
-    lista = []
-    for i in range(0,len(r_reprobacion),4):
-        lista.append(r_reprobacion[i])
-    return render_template('proyecciones.html',lista = lista)
+@app.route("/Pro_reprobacion")
+def Pro_reprobacion():
+    lista = pn.cargar_lista_reprobacion()
+    return render_template('pro_reprobacion.html',lista = lista)
+
+@app.route("/Pro_desercion")
+def Pro_desercion():
+    lista = pn.cargar_lista_desercion()
+    return render_template('pro_desercion.html',lista = lista)
+
+@app.route("/Pro_repitencia")
+def Pro_repitencia():
+    lista = pn.cargar_lista_reprobacion()
+    return render_template('pro_repitencia.html',lista = lista)
 
 if __name__ == "__main__":
     app.run(debug=True)
