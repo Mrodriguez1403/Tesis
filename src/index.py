@@ -98,8 +98,11 @@ def guardar_repitencia():
 
 @app.route("/proyecciones")
 def proyecciones():
-    
-    return render_template('proyecciones.html')
+    r_reprobacion = pn.cargar_rutas_reprobacion()
+    lista = []
+    for i in range(0,len(r_reprobacion),4):
+        lista.append(r_reprobacion[i])
+    return render_template('proyecciones.html',lista = lista)
 
 if __name__ == "__main__":
     app.run(debug=True)

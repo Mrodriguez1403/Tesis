@@ -9,6 +9,19 @@ from numpy import savetxt, loadtxt
 import datetime
 import os, shutil
 
+def cargar_rutas_reprobacion():
+    R  = loadtxt('Modelos/Rutas/ruta_reprobacion.csv', dtype="str", delimiter=',')
+    return R
+
+def cargar_rutas_desercion():
+    R  = loadtxt('Modelos/Rutas/ruta_desercion.csv', dtype="str", delimiter=',')
+    return R
+
+def cargar_rutas_repitencia():
+    R  = loadtxt('Modelos/Rutas/ruta_repitencia.csv', dtype="str", delimiter=',')
+    return R
+
+
 def cargar_datos_reporbacion():
     M = loadtxt('Modelos/Datos_entrenados/modelo_r_reprobacion.csv', delimiter=',')
     return M
