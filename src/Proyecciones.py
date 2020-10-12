@@ -92,6 +92,7 @@ def guardar_modelo_desercion():
     dest_m = "Modelos/Seleccionados"
     dest_d = "Modelos/Datos_Seleccionados"
     dest_g = "static/file/seleccionados"
+    dest_r = "Modelos/Rutas/ruta_desercion.csv"
     dir_m = os.path.join(dest_m,fecha)
     dir_d = os.path.join(dest_d,fecha)
     dir_g = os.path.join(dest_g,fecha)
@@ -108,6 +109,15 @@ def guardar_modelo_desercion():
 
     datos = cargar_datos_desercion()
     savetxt(dir_d+'/modelo_r_desercion.csv', datos, fmt="%s" ,delimiter=',')
+
+    if os.path.isfile(dest_r):
+        ruta = loadtxt(dest_r, dtype="str", delimiter=',')
+        ruta = np.append(ruta,["modelo_desercion - "+fecha,dir_m,dir_d,dir_g])
+        
+        savetxt(dest_r, ruta, fmt="%s" ,delimiter=',')
+    else:
+        ruta = ["modelo_desercion - "+fecha,dir_m,dir_d,dir_g]
+        savetxt(dest_r, ruta, fmt="%s" ,delimiter=',')
 
 
 
@@ -127,6 +137,7 @@ def guardar_modelo_repitencia():
     dir_m = os.path.join(dest_m,fecha)
     dir_d = os.path.join(dest_d,fecha)
     dir_g = os.path.join(dest_g,fecha)
+    dest_r = "Modelos/Rutas/ruta_repitencia.csv"
     os.makedirs(dir_m)
     os.makedirs(dir_d)
     os.makedirs(dir_g)
@@ -139,6 +150,15 @@ def guardar_modelo_repitencia():
 
     datos = cargar_datos_repitencia()
     savetxt(dir_d+'/modelo_r_repitencia.csv', datos, fmt="%s" ,delimiter=',')
+
+    if os.path.isfile(dest_r):
+        ruta = loadtxt(dest_r, dtype="str", delimiter=',')
+        ruta = np.append(ruta,["modelo_repitencia - "+fecha,dir_m,dir_d,dir_g])
+        
+        savetxt(dest_r, ruta, fmt="%s" ,delimiter=',')
+    else:
+        ruta = ["modelo_repitencia - "+fecha,dir_m,dir_d,dir_g]
+        savetxt(dest_r, ruta, fmt="%s" ,delimiter=',')
  
 
 
