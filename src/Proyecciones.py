@@ -68,11 +68,9 @@ def guardar_modelo_reprobacion():
     savetxt(dir_d+'/modelo_r_reprobacion.csv', datos, fmt="%s" ,delimiter=',')
 
     if os.path.isfile(dest_r):
-        r1 = loadtxt(dest_r,delimiter=',')
-        for i in r1:
-            print(i)
-        r2 = ["modelo_reprobacion - "+fecha,dir_m,dir_d,dir_g]
-        ruta = r1 + r2
+        ruta = loadtxt(dest_r, dtype="str", delimiter=',')
+        ruta = np.append(ruta,["modelo_reprobacion - "+fecha,dir_m,dir_d,dir_g])
+        
         savetxt(dest_r, ruta, fmt="%s" ,delimiter=',')
     else:
         ruta = ["modelo_reprobacion - "+fecha,dir_m,dir_d,dir_g]
