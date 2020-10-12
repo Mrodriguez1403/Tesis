@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/css/lista.css">
+</head>
+
+<body>
+
+    <div id="menu">
+        <form action="" id="menu" method="POST">
+            <label for="Regresiones">Regresiones</label>
+            <select name="Regresiones">
+                <option disabled="">Seleccionar una opcion</option>
+                {% for e in lista %}
+                <option value= "" >{{ e }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" name="Enviar" value="Enviar" />
+        </form>
+    </div>
+
+</body>
+
+</html>
