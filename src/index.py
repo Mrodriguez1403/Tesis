@@ -96,6 +96,10 @@ def guardar_repitencia():
         M = pn.cargar_datos_repitencia()
         return render_template('P_Repitencia.html',m_coe=M[0],m_mse=M[1],m_ve=M[2],l_coe=M[3],l_mse=M[4],l_ve=M[5],r_coe=M[6],r_mse=M[7],r_ve=M[8])
 
+@app.route("/proyecciones")
+def proyecciones():
+    
+    return render_template('proyecciones.html')
 
 if __name__ == "__main__":
     app.run(debug=True)

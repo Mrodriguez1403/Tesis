@@ -50,15 +50,13 @@ def guardar_modelo_reprobacion():
     dest_m = "Modelos/Seleccionados"
     dest_d = "Modelos/Datos_Seleccionados"
     dest_g = "static/file/seleccionados"
-    dest_r = "Modelos/Rutas"
+    dest_r = "Modelos/Rutas/ruta_reprobacion.csv"
     dir_m = os.path.join(dest_m,fecha)
     dir_d = os.path.join(dest_d,fecha)
     dir_g = os.path.join(dest_g,fecha)
-    dir_r = os.path.join(dest_r,fecha)
     os.makedirs(dir_m)
     os.makedirs(dir_d)  
     os.makedirs(dir_g)
-    os.makedirs(dir_r)
 
     shutil.copyfile("static/file/proyeccion_reprobacion_2.png",dir_g+"/regresion_reprobacion.png")
     
@@ -69,11 +67,16 @@ def guardar_modelo_reprobacion():
     datos = cargar_datos_reporbacion()
     savetxt(dir_d+'/modelo_r_reprobacion.csv', datos, fmt="%s" ,delimiter=',')
 
-    ruta = ["",dir_m,dir_d,dir_g,fecha]
-    savetxt(dir_r+"/ruta_reprobacion.csv", ruta, fmt="%s" ,delimiter=',')
-    
+    if os.path.isfile(dest_r):
+        ruta = loadtxt(dest_r,delimiter=',')
+        ruta.append(["modelo_reprobacion - "+fecha,dir_m,dir_d,dir_g])
+    else:
+        ruta = ["modelo_reprobacion - "+fecha,dir_m,dir_d,dir_g]
+        savetxt(dest_r, ruta, fmt="%s" ,delimiter=',')
+
 
     
+ 
 
 def guardar_modelo_desercion():
     lr= LinearRegression()

@@ -9,7 +9,7 @@
 </head>
 
 <body>
-
+    {% extends "layout.html" %} {% block content %}
     <div id="menu">
         <form action="" id="menu" method="POST">
             <label for="Regresiones">Regresiones</label>
@@ -22,7 +22,7 @@
             <input type="submit" name="Enviar" value="Enviar" />
         </form>
     </div>
-
+    {% endblock %}
 </body>
 
 </html>
