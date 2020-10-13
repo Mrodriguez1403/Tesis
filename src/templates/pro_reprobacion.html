@@ -5,24 +5,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generar Proyecciones</title>
-    <link rel="stylesheet" href="/static/css/lista.css">
+    <!-- <link rel="stylesheet" href="/static/css/lista.css"> -->
 </head>
 
 <body>
     {% extends "layout.html" %} {% block content %}
     <div id="menu">
-        <form action="" id="menu" method="POST">
-            <label for="Regresiones">Regresiones</label>
-            <br>
-            <select name="Regresiones-reprobacion">
+        <label for="Regresiones">Regresiones</label>
+        <br>
+        <form action="/Mostrar_datos_reprobacion" name="frmSubirCSV" id="frmSubirCSV" method="GET">
+            <select id="lista" name="lista">
                 <option disabled="">Seleccionar una opcion</option>
                 {% for e in lista %}
                 <option value= "{{ e }}" >{{ e }}</option>
                 {% endfor %}
             </select>
-            <input type="submit" name="Enviar" value="Enviar" />
+            <p><input type="submit" class="btn btn-primary" value="Mostrar Datos"></p>
         </form>
     </div>
+
+    <div>
+        {% block content_pro_reprobacion %} {% endblock %}
+
+    </div>
+
     {% endblock %}
 </body>
 

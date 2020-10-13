@@ -21,7 +21,50 @@ def cargar_rutas_repitencia():
     R  = loadtxt('Modelos/Rutas/ruta_repitencia.csv', dtype="str", delimiter=',')
     return R
 
+def cargar_datos_Selecionados_repro(ruta_datos):
+    M = loadtxt(ruta_datos+"/modelo_r_reprobacion.csv",dtype="str", delimiter=',')
+    return M
+
+def cargar_datos_Selecionados_deser(ruta_datos):
+    M = loadtxt(ruta_datos+"/modelo_r_desercion.csv",dtype="str", delimiter=',')
+    return M
+
+def cargar_datos_Selecionados_repit(ruta_datos):
+    M = loadtxt(ruta_datos+"/modelo_r_repitencia.csv",dtype="str", delimiter=',')
+    return M
+
+def buscar_rutas_reprobacion(nombre_modelo):
+    print(nombre_modelo)
     
+    R = cargar_rutas_reprobacion()
+    indice = 0
+    for i in range(0,len(R),1):
+        if nombre_modelo in R[i]:
+            indice = i 
+    ruta_datos = R[indice+2]
+    ruta_grafica = R[indice+3]
+    ruta_grafica = ruta_grafica+"/regresion_reprobacion.png"
+    return ruta_datos,ruta_grafica
+
+def buscar_rutas_desercion(nombre_modelo):
+    R = cargar_rutas_desercion()
+    indice = R.index(nombre_modelo)
+    ruta_modelos = R[indice+1]
+    ruta_datos = R[indice+2]
+    ruta_grafica = R[indice+3]
+    return ruta_modelos,ruta_datos,ruta_grafica
+
+def buscar_rutas_repitencia(nombre_modelo):
+    R = cargar_rutas_repitencia()
+    indice = R.index(nombre_modelo)
+    ruta_modelos = R[indice+1]
+    ruta_datos = R[indice+2]
+    ruta_grafica = R[indice+3]
+    return ruta_modelos,ruta_datos,ruta_grafica
+
+
+
+
 def cargar_lista_reprobacion():
     R  = cargar_rutas_reprobacion()
     lista = []

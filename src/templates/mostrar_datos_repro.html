@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datos Regresion Selecionados</title>
+</head>
+
+<body>
+    {% extends "pro_reprobacion.html" %} {% block content_pro_reprobacion %}
+    <div>
+        <img src="{{ruta_grafica}}" class="img-fluid" WIDTH="1200" HEIGHT="780" title="Grafica de Proyeccion de Reprobacion">
+        <br>
+        <h1 style="text-align: center;">DATOS DEL MODELO DE REPROBACION</h1>
+        <div class="row">
+            <div class="col-xs-12 col-sm-4">
+                <h2>Regresión Lineal</h2>
+                <br>
+                <h3>Coeficiente : {{m_coe}}</h3>
+                <br>
+                <h3>Suma de Residuos al Cuadrado : {{m_mse}}</h3>
+                <br>
+                <h3>Varianza Explicada : {{m_ve}}</h3>
+            </div>
+            <div class="col-xs-12 col-sm-4">
+                <h2>Regresión Lasso</h2>
+                <br>
+                <h3>Coeficiente : {{l_coe}}</h3>
+                <br>
+                <h3>Suma de Residuos al Cuadrado : {{l_mse}}</h3>
+                <br>
+                <h3>Varianza Explicada : {{l_ve}}</h3>
+            </div>
+            <div class="col-xs-12 col-sm-4">
+                <h2>Regresión Ridge</h2>
+                <br>
+                <h3>Coeficiente : {{r_coe}}</h3>
+                <br>
+                <h3>Suma de Residuos al Cuadrado : {{r_mse}}</h3>
+                <br>
+                <h3>Varianza Explicada : {{r_ve}}</h3>
+            </div>
+        </div>
+
+    </div>
+
+    {% endblock %}
+</body>
+
+</html>

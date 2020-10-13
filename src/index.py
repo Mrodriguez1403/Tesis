@@ -101,6 +101,19 @@ def Pro_reprobacion():
     lista = pn.cargar_lista_reprobacion()
     return render_template('pro_reprobacion.html',lista = lista)
 
+@app.route("/Mostrar_datos_reprobacion", methods=['GET'])
+def Mostrar_datos_reprobacion():
+    if request.method == 'GET':
+         select = request.form.get('lista')
+         nombre_modelo = str(select)
+         print(nombre_modelo)
+         ruta_datos,ruta_grafica = pn.buscar_rutas_reprobacion(nombre_modelo)
+         M = pn.cargar_datos_Selecionados_repro(ruta_datos)
+         return render_template('mostrar_datos_repro.html',ruta_grafica=ruta_grafica,m_coe=M[0],m_mse=M[1],m_ve=M[2],l_coe=M[3],l_mse=M[4],l_ve=M[5],r_coe=M[6],r_mse=M[7],r_ve=M[8])
+  
+
+
+    
 @app.route("/Pro_desercion")
 def Pro_desercion():
     lista = pn.cargar_lista_desercion()
