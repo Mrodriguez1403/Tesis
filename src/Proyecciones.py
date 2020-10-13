@@ -34,8 +34,6 @@ def cargar_datos_Selecionados_repit(ruta_datos):
     return M
 
 def buscar_rutas_reprobacion(nombre_modelo):
-    print(nombre_modelo)
-    
     R = cargar_rutas_reprobacion()
     indice = 0
     for i in range(0,len(R),1):
@@ -48,19 +46,25 @@ def buscar_rutas_reprobacion(nombre_modelo):
 
 def buscar_rutas_desercion(nombre_modelo):
     R = cargar_rutas_desercion()
-    indice = R.index(nombre_modelo)
-    ruta_modelos = R[indice+1]
+    indice = 0
+    for i in range(0,len(R),1):
+        if nombre_modelo in R[i]:
+            indice = i 
     ruta_datos = R[indice+2]
     ruta_grafica = R[indice+3]
-    return ruta_modelos,ruta_datos,ruta_grafica
+    ruta_grafica = ruta_grafica+"/regresion_desercion.png"
+    return ruta_datos,ruta_grafica
 
 def buscar_rutas_repitencia(nombre_modelo):
     R = cargar_rutas_repitencia()
-    indice = R.index(nombre_modelo)
-    ruta_modelos = R[indice+1]
+    indice = 0
+    for i in range(0,len(R),1):
+        if nombre_modelo in R[i]:
+            indice = i 
     ruta_datos = R[indice+2]
     ruta_grafica = R[indice+3]
-    return ruta_modelos,ruta_datos,ruta_grafica
+    ruta_grafica = ruta_grafica+"/regresion_repitencia.png"
+    return ruta_datos,ruta_grafica
 
 
 
