@@ -90,6 +90,32 @@ def cargar_lista_repitencia():
         lista.append(R[i])
     return lista
 
+def buscar_modelo_reprobacion(nombre_modelo):
+    R = cargar_rutas_reprobacion()
+    indice = 0
+    for i in range(0,len(R),1):
+        if nombre_modelo in R[i]:
+            indice = i 
+    ruta_modelo = R[indice+1]
+    return ruta_modelo
+
+def buscar_modelo_desercion(nombre_modelo):
+    R = cargar_rutas_desercion()
+    indice = 0
+    for i in range(0,len(R),1):
+        if nombre_modelo in R[i]:
+            indice = i 
+    ruta_modelo = R[indice+1]
+    return ruta_modelo
+
+def buscar_modelo_repitencia(nombre_modelo):
+    R = cargar_rutas_repitencia()
+    indice = 0
+    for i in range(0,len(R),1):
+        if nombre_modelo in R[i]:
+            indice = i 
+    ruta_modelo = R[indice+1]
+    return ruta_modelo
 
 def cargar_datos_reporbacion():
     M = loadtxt('Modelos/Datos_entrenados/modelo_r_reprobacion.csv', delimiter=',')
@@ -159,7 +185,17 @@ def guardar_modelo_reprobacion():
         savetxt(dest_r, ruta, fmt="%s" ,delimiter=',')
 
 
-    
+# def Proyeccion_modelo_reprobacion(ruta_modelo):
+#     lr= LinearRegression()
+#     rgl = Lasso(alpha=.5)
+#     rgr = Ridge(alpha=.5)
+#     lr = load('Modelos/Entrenados/lr_desercion.pkl')
+#     rgl = load('Modelos/Entrenados/rgl_desercion.pkl')
+#     rgr = load('Modelos/Entrenados/rgr_desercion.pkl')
+
+
+
+
  
 
 def guardar_modelo_desercion():
@@ -265,17 +301,17 @@ def proyeccion_reprobacion():
     rgl = Lasso(alpha=.5)
     rgr = Ridge(alpha=.5)
     
-    # Guardar modelos
-    dump(lr, 'Modelos/Entrenados/lr_reprobacion.pkl')
-    dump(rgl, 'Modelos/Entrenados/rgl_reprobacion.pkl')
-    dump(rgr, 'Modelos/Entrenados/rgr_reprobacion.pkl')
-
     # #entreno el modelo
 
     # Reprobacion media
     lr.fit(X_train, y_train)
     rgl.fit(X_train, y_train)
     rgr.fit(X_train, y_train)
+
+    # Guardar modelos
+    dump(lr, 'Modelos/Entrenados/lr_reprobacion.pkl')
+    dump(rgl, 'Modelos/Entrenados/rgl_reprobacion.pkl')
+    dump(rgr, 'Modelos/Entrenados/rgr_reprobacion.pkl')
 
     # Reprobacion media
     y_pred = lr.predict(X_test)

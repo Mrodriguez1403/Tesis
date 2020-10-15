@@ -10,54 +10,73 @@
 
 <body>
     {% extends "layout.html" %} {% block content %}
-    <div id="menu">
-        <label for="Regresiones">Regresiones</label>
-        <br>
-        <form action="/Mostrar_datos_reprobacion" method="POST">
-            <select name="lista" class="selectpicker form-control">
-                <option disabled="">Seleccionar una opcion</option>
-                {% for e in lista %}
-                <option value= "{{ e }}" >{{ e }}</option>
-                {% endfor %}
-            </select>
-            <p><input type="submit" class="btn btn-primary" value="Mostrar Datos"></p>
-        </form>
-    </div>
+    <div class="row">
+        <div class="col-xs-12 col-xl">
+            <div id="menu">
+                <label for="Regresiones">Mostrar Regresiones</label>
+                <br>
+                <form action="/Mostrar_datos_reprobacion" method="POST">
+                    <select name="lista" class="selectpicker form-control">
+                        <option disabled="">Seleccionar una opcion</option>
+                        {% for e in lista %}
+                        <option value= "{{ e }}" >{{ e }}</option>
+                        {% endfor %}
+                    </select>
+                    <p><input type="submit" class="btn btn-primary" value="Mostrar Datos"></p>
+                </form>
+            </div>
 
-    <div>
-        <img src="{{ruta_grafica}}" class="img-fluid" WIDTH="1200" HEIGHT="780" title="Grafica de Proyeccion de Reprobacion">
-        <br>
-        <h1 style="text-align: center;">DATOS DEL MODELO DE REPROBACION</h1>
-        <div class="row">
-            <div class="col-xs-12 col-sm-4">
-                <h2>Regresión Lineal</h2>
+            <div>
+                <img src="{{ruta_grafica}}" class="img-fluid" WIDTH="600" HEIGHT="400" title="Grafica de Proyeccion de Reprobacion">
                 <br>
-                <h3>Coeficiente : {{m_coe}}</h3>
-                <br>
-                <h3>Suma de Residuos al Cuadrado : {{m_mse}}</h3>
-                <br>
-                <h3>Varianza Explicada : {{m_ve}}</h3>
-            </div>
-            <div class="col-xs-12 col-sm-4">
-                <h2>Regresión Lasso</h2>
-                <br>
-                <h3>Coeficiente : {{l_coe}}</h3>
-                <br>
-                <h3>Suma de Residuos al Cuadrado : {{l_mse}}</h3>
-                <br>
-                <h3>Varianza Explicada : {{l_ve}}</h3>
-            </div>
-            <div class="col-xs-12 col-sm-4">
-                <h2>Regresión Ridge</h2>
-                <br>
-                <h3>Coeficiente : {{r_coe}}</h3>
-                <br>
-                <h3>Suma de Residuos al Cuadrado : {{r_mse}}</h3>
-                <br>
-                <h3>Varianza Explicada : {{r_ve}}</h3>
+                <h3 style="text-align: center;">DATOS DEL MODELO DE REPROBACION</h1>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-4">
+                            <h4>Regresión Lineal</h4>
+                            <br>
+                            <label>Coeficiente : {{m_coe}}</label>
+                            <br>
+                            <label>Suma de Residuos al Cuadrado : {{m_mse}}</label>
+                            <br>
+                            <label>Varianza Explicada : {{m_ve}}</label>
+                        </div>
+                        <div class="col-xs-12 col-sm-4">
+                            <h4>Regresión Lasso</h4>
+                            <br>
+                            <label>Coeficiente : {{l_coe}}</label>
+                            <br>
+                            <label>Suma de Residuos al Cuadrado : {{l_mse}}</label>
+                            <br>
+                            <label>Varianza Explicada : {{l_ve}}</label>
+                        </div>
+                        <div class="col-xs-12 col-sm-4">
+                            <h4>Regresión Ridge</h4>
+                            <br>
+                            <label>Coeficiente : {{r_coe}}</label>
+                            <br>
+                            <label>Suma de Residuos al Cuadrado : {{r_mse}}</label>
+                            <br>
+                            <label>Varianza Explicada : {{r_ve}}</label>
+                        </div>
+                    </div>
+
             </div>
         </div>
-
+        <div class="col-xs-12 col-xl">
+            <div id="menu">
+                <label for="Regresiones">Proyectar Regresiones</label>
+                <br>
+                <form action="/proyectar_reprobacion" method="POST">
+                    <select name="lista" class="selectpicker form-control">
+                        <option disabled="">Seleccionar una opcion</option>
+                        {% for e in lista %}
+                        <option value= "{{ e }}" >{{ e }}</option>
+                        {% endfor %}
+                    </select>
+                    <p><input type="submit" class="btn btn-primary" value="Realizar Proyeccion"></p>
+                </form>
+            </div>
+        </div>
     </div>
 
     {% endblock %}

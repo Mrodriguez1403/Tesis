@@ -55,22 +55,22 @@ def Reg_repitencia():
    
 
 @app.route("/run2", methods=['GET'])
-def run_pro_reprobacion():
+def run_reg_reprobacion():
     if request.method == 'GET':
         m_coe,m_mse,m_ve,l_coe,l_mse,l_ve,r_coe,r_mse,r_ve = pn.proyeccion_reprobacion()
-        return render_template('P_Reprobacion.html',m_coe=m_coe,m_mse=m_mse,m_ve=m_ve,l_coe=l_coe,l_mse=l_mse,l_ve=l_ve,r_coe=r_coe,r_mse=r_mse,r_ve=r_ve)
+        return render_template('Reg_Reprobacion.html',m_coe=m_coe,m_mse=m_mse,m_ve=m_ve,l_coe=l_coe,l_mse=l_mse,l_ve=l_ve,r_coe=r_coe,r_mse=r_mse,r_ve=r_ve)
 
 @app.route("/run3", methods=['GET'])
-def run_pro_desercion():
+def run_reg_desercion():
     if request.method == 'GET':
         m_coe,m_mse,m_ve,l_coe,l_mse,l_ve,r_coe,r_mse,r_ve = pn.proyeccion_desercion()
-        return render_template('P_Desercion.html',m_coe=m_coe,m_mse=m_mse,m_ve=m_ve,l_coe=l_coe,l_mse=l_mse,l_ve=l_ve,r_coe=r_coe,r_mse=r_mse,r_ve=r_ve)
+        return render_template('Reg_Desercion.html',m_coe=m_coe,m_mse=m_mse,m_ve=m_ve,l_coe=l_coe,l_mse=l_mse,l_ve=l_ve,r_coe=r_coe,r_mse=r_mse,r_ve=r_ve)
 
 @app.route("/run4", methods=['GET'])
-def run_pro_repitencia():
+def run_reg_repitencia():
     if request.method == 'GET':
         m_coe,m_mse,m_ve,l_coe,l_mse,l_ve,r_coe,r_mse,r_ve = pn.proyeccion_repitencia()
-        return render_template('P_Repitencia.html',m_coe=m_coe,m_mse=m_mse,m_ve=m_ve,l_coe=l_coe,l_mse=l_mse,l_ve=l_ve,r_coe=r_coe,r_mse=r_mse,r_ve=r_ve)
+        return render_template('Reg_Repitencia.html',m_coe=m_coe,m_mse=m_mse,m_ve=m_ve,l_coe=l_coe,l_mse=l_mse,l_ve=l_ve,r_coe=r_coe,r_mse=r_mse,r_ve=r_ve)
 
 @app.route("/guardar_reprobacion", methods=['GET'])
 def guardar_reprobacion():
@@ -78,7 +78,7 @@ def guardar_reprobacion():
         pn.guardar_modelo_reprobacion()
         pn.elimiar_modelos_reprobacion()
         M = pn.cargar_datos_reporbacion()
-        return render_template('P_Reprobacion.html',m_coe=M[0],m_mse=M[1],m_ve=M[2],l_coe=M[3],l_mse=M[4],l_ve=M[5],r_coe=M[6],r_mse=M[7],r_ve=M[8])
+        return render_template('Reg_Reprobacion.html',m_coe=M[0],m_mse=M[1],m_ve=M[2],l_coe=M[3],l_mse=M[4],l_ve=M[5],r_coe=M[6],r_mse=M[7],r_ve=M[8])
 
 @app.route("/guardar_desercion", methods=['GET'])
 def guardar_desercion():
@@ -86,7 +86,7 @@ def guardar_desercion():
         pn.guardar_modelo_desercion()
         pn.elimiar_modelos_desercion()
         M = pn.cargar_datos_desercion()
-        return render_template('P_Desercion.html',m_coe=M[0],m_mse=M[1],m_ve=M[2],l_coe=M[3],l_mse=M[4],l_ve=M[5],r_coe=M[6],r_mse=M[7],r_ve=M[8])
+        return render_template('Reg_Desercion.html',m_coe=M[0],m_mse=M[1],m_ve=M[2],l_coe=M[3],l_mse=M[4],l_ve=M[5],r_coe=M[6],r_mse=M[7],r_ve=M[8])
 
 @app.route("/guardar_repitencia", methods=['GET'])
 def guardar_repitencia():
@@ -94,7 +94,7 @@ def guardar_repitencia():
         pn.guardar_modelo_repitencia()
         pn.elimiar_modelos_repitencia()
         M = pn.cargar_datos_repitencia()
-        return render_template('P_Repitencia.html',m_coe=M[0],m_mse=M[1],m_ve=M[2],l_coe=M[3],l_mse=M[4],l_ve=M[5],r_coe=M[6],r_mse=M[7],r_ve=M[8])
+        return render_template('Reg_Repitencia.html',m_coe=M[0],m_mse=M[1],m_ve=M[2],l_coe=M[3],l_mse=M[4],l_ve=M[5],r_coe=M[6],r_mse=M[7],r_ve=M[8])
 
 @app.route("/Pro_reprobacion")
 def Pro_reprobacion():
@@ -127,10 +127,7 @@ def Mostrar_datos_repitencia():
     M = pn.cargar_datos_Selecionados_repit(ruta_datos)
     lista = pn.cargar_lista_repitencia()
     return render_template('pro_repitencia.html',lista = lista,ruta_grafica=ruta_grafica,m_coe=M[0],m_mse=M[1],m_ve=M[2],l_coe=M[3],l_mse=M[4],l_ve=M[5],r_coe=M[6],r_mse=M[7],r_ve=M[8])
-  
-
-
-    
+   
 @app.route("/Pro_desercion")
 def Pro_desercion():
     lista = pn.cargar_lista_desercion()
