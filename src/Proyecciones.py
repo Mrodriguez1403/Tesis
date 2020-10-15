@@ -185,19 +185,6 @@ def guardar_modelo_reprobacion():
         savetxt(dest_r, ruta, fmt="%s" ,delimiter=',')
 
 
-# def Proyeccion_modelo_reprobacion(ruta_modelo):
-#     lr= LinearRegression()
-#     rgl = Lasso(alpha=.5)
-#     rgr = Ridge(alpha=.5)
-#     lr = load('Modelos/Entrenados/lr_desercion.pkl')
-#     rgl = load('Modelos/Entrenados/rgl_desercion.pkl')
-#     rgr = load('Modelos/Entrenados/rgr_desercion.pkl')
-
-
-
-
- 
-
 def guardar_modelo_desercion():
     lr= LinearRegression()
     rgl = Lasso(alpha=.5)
@@ -279,6 +266,41 @@ def guardar_modelo_repitencia():
         savetxt(dest_r, ruta, fmt="%s" ,delimiter=',')
  
 
+def Proyeccion_modelo_reprobacion(nombre_modelo):
+    ruta_modelo = buscar_modelo_reprobacion(nombre_modelo)
+    ruta_grafica = "static/file/proyecciones/proyeccion_reprobacion.png"
+    lr= LinearRegression()
+    rgl = Lasso(alpha=.5)
+    rgr = Ridge(alpha=.5)
+    lr = load(ruta_modelo+'/lr_reprobacion.pkl')
+    rgl = load(ruta_modelo+'/rgl_reprobacion.pkl')
+    rgr = load(ruta_modelo+'/rgr_reprobacion.pkl')
+    año_actual =  datetime.datetime.now().year
+    periodos =[año_actual,año_actual+1,año_actual+2,año_actual+3,año_actual+4]
+    periodos = np.reshape(periodos, (-1, 1))
+    y_pred = lr.predict(periodos)
+    y_predrgl = rgl.predict(periodos)
+    y_predrgr = rgr.predict(periodos)
+
+    fig1 = plt.figure(figsize=(12,8), dpi=120)
+
+    fig1.subplots_adjust(hspace=0.5, wspace=0.5)
+    ax = fig1.add_subplot(2, 1, 2)
+    ax.scatter(periodos,y_pred, color='blue')
+    ax.scatter(periodos,y_predrgl, color='yellow')
+    ax.scatter(periodos,y_predrgr, color='green')
+    # ax2.plot(periodos, y_pred, color='blue',linewidth=3, label=u'Regresión MCO')
+    # ax2.plot(periodos, y_predrgl, color='yellow',linewidth=3, label=u'Regresión Lasso')
+    # ax2.plot(periodos, y_predrgr, color='green',linewidth=3, label=u'Regresión Ridge')
+    ax.set_title(u'Proyeccion de los siguentes 5 Periodos Escolares')
+    ax.set_xlabel('Periodos')
+    ax.set_ylabel('Proyeccion Reprobacion Media')
+    fig1.savefig(ruta_grafica)
+    plt.show()
+
+    return ruta_grafica
+  
+
 
 def proyeccion_reprobacion():
     datos=pd.read_csv('Datos/Datos_MEN.csv',header=0)
@@ -317,6 +339,8 @@ def proyeccion_reprobacion():
     y_pred = lr.predict(X_test)
     y_predrgl = rgl.predict(X_test)
     y_predrgr = rgr.predict(X_test)
+
+    print("X_test",X_test)
 
     print('DATOS DEL MODELO DE REPROBACION')
     print ('Regresión Mínimos Cuadrados Ordinarios')

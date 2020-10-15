@@ -138,5 +138,15 @@ def Pro_repitencia():
     lista = pn.cargar_lista_reprobacion()
     return render_template('pro_repitencia.html',lista = lista)
 
+
+@app.route("/run_pro_repro", methods=['GET', 'POST'])
+def run_pro_repor():
+    select = request.form.get('lista2')
+    nombre_modelo = str(select)
+    ruta_grafica = pn.Proyeccion_modelo_reprobacion(nombre_modelo)
+    lista = pn.cargar_lista_reprobacion()
+    return render_template('pro_reprobacion.html',lista = lista,ruta_grafica2=ruta_grafica)
+
+
 if __name__ == "__main__":
     app.run(debug=True)
