@@ -11,53 +11,63 @@
 <body>
     {% extends "layout.html" %} {% block content %}
     <div id="menu">
-        <label for="Regresiones">Regresiones</label>
+        <label style="text-align: center;" for="Regresiones">Proyectar Regresiones</label>
         <br>
-        <form action="/Mostrar_datos_desercion" method="POST">
-            <select name="lista" class="selectpicker form-control">
+        <form action="/run_pro_deser" method="POST">
+            <select name="lista_regresion" class="selectpicker form-control">
                 <option disabled="">Seleccionar una opcion</option>
                 {% for e in lista %}
                 <option value= "{{ e }}" >{{ e }}</option>
                 {% endfor %}
             </select>
-            <p><input type="submit" class="btn btn-primary" value="Mostrar Datos"></p>
+            <p><input type="submit" class="btn btn-primary" value="Realizar Proyeccion"></p>
         </form>
     </div>
 
-    <div>
-        <img src="{{ruta_grafica}}" class="img-fluid" WIDTH="1200" HEIGHT="780" title="Grafica de Proyeccion de Reprobacion">
-        <br>
-        <h1 style="text-align: center;">DATOS DEL MODELO DE DESERCION</h1>
-        <div class="row">
-            <div class="col-xs-12 col-sm-4">
-                <h2>Regresión Lineal</h2>
-                <br>
-                <h3>Coeficiente : {{m_coe}}</h3>
-                <br>
-                <h3>Suma de Residuos al Cuadrado : {{m_mse}}</h3>
-                <br>
-                <h3>Varianza Explicada : {{m_ve}}</h3>
+    <div class="row">
+        <div class="col-xs-12 col-xl">
+            <h5>Grafica de Regresion de la Tasa de Desercion en los Periodos Academicos 2011 - 2019</h5>
+            <br>
+            <img src="{{ruta_grafica}}" class="img-fluid" WIDTH="600" HEIGHT="400" title="Grafica de Proyeccion de Reprobacion">
+            <br>
+            <br>
+            <h4 style="text-align: center;">DATOS DEL MODELO DE DESERCION</h4>
+            <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                    <h5>Regresión Lineal</h5>
+                    <br>
+                    <label>Coeficiente : {{m_coe}}</label>
+                    <br>
+                    <label>Suma de Residuos al Cuadrado : {{m_mse}}</label>
+                    <br>
+                    <label>Varianza Explicada : {{m_ve}}</label>
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                    <h5>Regresión Lasso</h5>
+                    <br>
+                    <label>Coeficiente : {{l_coe}}</label>
+                    <br>
+                    <label>Suma de Residuos al Cuadrado : {{l_mse}}</label>
+                    <br>
+                    <label>Varianza Explicada : {{l_ve}}</label>
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                    <h5>Regresión Ridge</h5>
+                    <br>
+                    <label>Coeficiente : {{r_coe}}</label>
+                    <br>
+                    <label>Suma de Residuos al Cuadrado : {{r_mse}}</label>
+                    <br>
+                    <label>Varianza Explicada : {{r_ve}}</label>
+                </div>
             </div>
-            <div class="col-xs-12 col-sm-4">
-                <h2>Regresión Lasso</h2>
-                <br>
-                <h3>Coeficiente : {{l_coe}}</h3>
-                <br>
-                <h3>Suma de Residuos al Cuadrado : {{l_mse}}</h3>
-                <br>
-                <h3>Varianza Explicada : {{l_ve}}</h3>
-            </div>
-            <div class="col-xs-12 col-sm-4">
-                <h2>Regresión Ridge</h2>
-                <br>
-                <h3>Coeficiente : {{r_coe}}</h3>
-                <br>
-                <h3>Suma de Residuos al Cuadrado : {{r_mse}}</h3>
-                <br>
-                <h3>Varianza Explicada : {{r_ve}}</h3>
-            </div>
-        </div>
 
+        </div>
+        <div class="col-xs-12 col-xl">
+            <h5>Grafica de Proyeccion de los Siguientes 5 Periodos Academicos</h5>
+            <br>
+            <img src="{{ruta_grafica2}}" class="img-fluid" WIDTH="600" HEIGHT="400" title="Grafica de Proyeccion de Reprobacion">
+        </div>
     </div>
     {% endblock %}
 </body>

@@ -100,33 +100,6 @@ def guardar_repitencia():
 def Pro_reprobacion():
     lista = pn.cargar_lista_reprobacion()
     return render_template('pro_reprobacion.html',lista = lista)
-
-@app.route("/Mostrar_datos_reprobacion", methods=['GET', 'POST'])
-def Mostrar_datos_reprobacion():
-    select = request.form.get('lista')
-    nombre_modelo = str(select)
-    ruta_datos,ruta_grafica = pn.buscar_rutas_reprobacion(nombre_modelo)
-    M = pn.cargar_datos_Selecionados_repro(ruta_datos)
-    lista = pn.cargar_lista_reprobacion()
-    return render_template('pro_reprobacion.html',lista = lista,ruta_grafica=ruta_grafica,m_coe=M[0],m_mse=M[1],m_ve=M[2],l_coe=M[3],l_mse=M[4],l_ve=M[5],r_coe=M[6],r_mse=M[7],r_ve=M[8])
-
-@app.route("/Mostrar_datos_desercion", methods=['GET', 'POST'])
-def Mostrar_datos_desercion():
-    select = request.form.get('lista')
-    nombre_modelo = str(select)
-    ruta_datos,ruta_grafica = pn.buscar_rutas_desercion(nombre_modelo)
-    M = pn.cargar_datos_Selecionados_deser(ruta_datos)
-    lista = pn.cargar_lista_desercion()
-    return render_template('pro_desercion.html',lista = lista,ruta_grafica=ruta_grafica,m_coe=M[0],m_mse=M[1],m_ve=M[2],l_coe=M[3],l_mse=M[4],l_ve=M[5],r_coe=M[6],r_mse=M[7],r_ve=M[8])
-
-@app.route("/Mostrar_datos_repitencia", methods=['GET', 'POST'])
-def Mostrar_datos_repitencia():
-    select = request.form.get('lista')
-    nombre_modelo = str(select)
-    ruta_datos,ruta_grafica = pn.buscar_rutas_repitencia(nombre_modelo)
-    M = pn.cargar_datos_Selecionados_repit(ruta_datos)
-    lista = pn.cargar_lista_repitencia()
-    return render_template('pro_repitencia.html',lista = lista,ruta_grafica=ruta_grafica,m_coe=M[0],m_mse=M[1],m_ve=M[2],l_coe=M[3],l_mse=M[4],l_ve=M[5],r_coe=M[6],r_mse=M[7],r_ve=M[8])
    
 @app.route("/Pro_desercion")
 def Pro_desercion():
@@ -141,11 +114,33 @@ def Pro_repitencia():
 
 @app.route("/run_pro_repro", methods=['GET', 'POST'])
 def run_pro_repor():
-    select = request.form.get('lista2')
+    select = request.form.get('lista_regresion')
     nombre_modelo = str(select)
-    ruta_grafica = pn.Proyeccion_modelo_reprobacion(nombre_modelo)
+    ruta_datos,ruta_grafica = pn.buscar_rutas_reprobacion(nombre_modelo)
+    M = pn.cargar_datos_Selecionados_repro(ruta_datos)
+    ruta_grafica2 = pn.Proyeccion_modelo_reprobacion(nombre_modelo)
     lista = pn.cargar_lista_reprobacion()
-    return render_template('pro_reprobacion.html',lista = lista,ruta_grafica2=ruta_grafica)
+    return render_template('pro_reprobacion.html',lista = lista,ruta_grafica2=ruta_grafica2,ruta_grafica = ruta_grafica,m_coe=M[0],m_mse=M[1],m_ve=M[2],l_coe=M[3],l_mse=M[4],l_ve=M[5],r_coe=M[6],r_mse=M[7],r_ve=M[8])
+
+@app.route("/run_pro_deser", methods=['GET', 'POST'])
+def run_pro_deser():
+    select = request.form.get('lista_regresion')
+    nombre_modelo = str(select)
+    ruta_datos,ruta_grafica = pn.buscar_rutas_desercion(nombre_modelo)
+    M = pn.cargar_datos_Selecionados_deser(ruta_datos)
+    ruta_grafica2 = pn.Proyeccion_modelo_desercion(nombre_modelo)
+    lista = pn.cargar_lista_desercion()
+    return render_template('pro_desercion.html',lista = lista,ruta_grafica2=ruta_grafica2,ruta_grafica = ruta_grafica,m_coe=M[0],m_mse=M[1],m_ve=M[2],l_coe=M[3],l_mse=M[4],l_ve=M[5],r_coe=M[6],r_mse=M[7],r_ve=M[8])
+
+@app.route("/run_pro_repit", methods=['GET', 'POST'])
+def run_pro_repit():
+    select = request.form.get('lista_regresion')
+    nombre_modelo = str(select)
+    ruta_datos,ruta_grafica = pn.buscar_rutas_repitencia(nombre_modelo)
+    M = pn.cargar_datos_Selecionados_repit(ruta_datos)
+    ruta_grafica2 = pn.Proyeccion_modelo_repitencia(nombre_modelo)
+    lista = pn.cargar_lista_repitencia()
+    return render_template('pro_repitencia.html',lista = lista,ruta_grafica2=ruta_grafica2,ruta_grafica = ruta_grafica,m_coe=M[0],m_mse=M[1],m_ve=M[2],l_coe=M[3],l_mse=M[4],l_ve=M[5],r_coe=M[6],r_mse=M[7],r_ve=M[8])
 
 
 if __name__ == "__main__":

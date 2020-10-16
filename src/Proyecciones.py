@@ -285,7 +285,7 @@ def Proyeccion_modelo_reprobacion(nombre_modelo):
     fig1 = plt.figure(figsize=(12,8), dpi=120)
 
     fig1.subplots_adjust(hspace=0.5, wspace=0.5)
-    ax = fig1.add_subplot(2, 1, 2)
+    ax = fig1.add_subplot(1, 1, 1)
     ax.scatter(periodos,y_pred, color='blue')
     ax.scatter(periodos,y_predrgl, color='yellow')
     ax.scatter(periodos,y_predrgr, color='green')
@@ -296,8 +296,70 @@ def Proyeccion_modelo_reprobacion(nombre_modelo):
     ax.set_xlabel('Periodos')
     ax.set_ylabel('Proyeccion Reprobacion Media')
     fig1.savefig(ruta_grafica)
-    plt.show()
+    return ruta_grafica
+  
+def Proyeccion_modelo_desercion(nombre_modelo):
+    ruta_modelo = buscar_modelo_desercion(nombre_modelo)
+    ruta_grafica = "static/file/proyecciones/proyeccion_desercion.png"
+    lr= LinearRegression()
+    rgl = Lasso(alpha=.5)
+    rgr = Ridge(alpha=.5)
+    lr = load(ruta_modelo+'/lr_desercion.pkl')
+    rgl = load(ruta_modelo+'/rgl_desercion.pkl')
+    rgr = load(ruta_modelo+'/rgr_desercion.pkl')
+    año_actual =  datetime.datetime.now().year
+    periodos =[año_actual,año_actual+1,año_actual+2,año_actual+3,año_actual+4]
+    periodos = np.reshape(periodos, (-1, 1))
+    y_pred = lr.predict(periodos)
+    y_predrgl = rgl.predict(periodos)
+    y_predrgr = rgr.predict(periodos)
 
+    fig1 = plt.figure(figsize=(12,8), dpi=120)
+
+    fig1.subplots_adjust(hspace=0.5, wspace=0.5)
+    ax = fig1.add_subplot(1, 1, 1)
+    ax.scatter(periodos,y_pred, color='blue')
+    ax.scatter(periodos,y_predrgl, color='yellow')
+    ax.scatter(periodos,y_predrgr, color='green')
+    # ax2.plot(periodos, y_pred, color='blue',linewidth=3, label=u'Regresión MCO')
+    # ax2.plot(periodos, y_predrgl, color='yellow',linewidth=3, label=u'Regresión Lasso')
+    # ax2.plot(periodos, y_predrgr, color='green',linewidth=3, label=u'Regresión Ridge')
+    ax.set_title(u'Proyeccion de los siguentes 5 Periodos Escolares')
+    ax.set_xlabel('Periodos')
+    ax.set_ylabel('Proyeccion Desercion Media')
+    fig1.savefig(ruta_grafica)
+    return ruta_grafica
+  
+def Proyeccion_modelo_repitencia(nombre_modelo):
+    ruta_modelo = buscar_modelo_repitencia(nombre_modelo)
+    ruta_grafica = "static/file/proyecciones/proyeccion_repitencia.png"
+    lr= LinearRegression()
+    rgl = Lasso(alpha=.5)
+    rgr = Ridge(alpha=.5)
+    lr = load(ruta_modelo+'/lr_repitencia.pkl')
+    rgl = load(ruta_modelo+'/rgl_repitencia.pkl')
+    rgr = load(ruta_modelo+'/rgr_repitencia.pkl')
+    año_actual =  datetime.datetime.now().year
+    periodos =[año_actual,año_actual+1,año_actual+2,año_actual+3,año_actual+4]
+    periodos = np.reshape(periodos, (-1, 1))
+    y_pred = lr.predict(periodos)
+    y_predrgl = rgl.predict(periodos)
+    y_predrgr = rgr.predict(periodos)
+
+    fig1 = plt.figure(figsize=(12,8), dpi=120)
+
+    fig1.subplots_adjust(hspace=0.5, wspace=0.5)
+    ax = fig1.add_subplot(1, 1, 1)
+    ax.scatter(periodos,y_pred, color='blue')
+    ax.scatter(periodos,y_predrgl, color='yellow')
+    ax.scatter(periodos,y_predrgr, color='green')
+    # ax2.plot(periodos, y_pred, color='blue',linewidth=3, label=u'Regresión MCO')
+    # ax2.plot(periodos, y_predrgl, color='yellow',linewidth=3, label=u'Regresión Lasso')
+    # ax2.plot(periodos, y_predrgr, color='green',linewidth=3, label=u'Regresión Ridge')
+    ax.set_title(u'Proyeccion de los siguentes 5 Periodos Escolares')
+    ax.set_xlabel('Periodos')
+    ax.set_ylabel('Proyeccion Repitencia Media')
+    fig1.savefig(ruta_grafica)
     return ruta_grafica
   
 
