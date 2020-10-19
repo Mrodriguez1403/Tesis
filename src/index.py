@@ -8,7 +8,11 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER']="./Datos"
 
 @app.route('/')
-def home():
+def info():
+   return render_template('info.html')
+
+@app.route('/graficas_riesgo')
+def graficas_riesgo():
    return render_template('index.html')
 
 @app.route('/Proyecciones_reales')
