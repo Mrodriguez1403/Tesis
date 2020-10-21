@@ -3,6 +3,7 @@ from flask import Flask, render_template, request
 from werkzeug.utils import secure_filename
 import Proyecciones_reales as pr
 import Proyecciones as pn
+import Proyecciones_sinteticas as ps
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER']="./Datos"
@@ -22,7 +23,8 @@ def p_reales():
 
 @app.route('/Proyecciones_sinteticas')
 def p_sinteticas():
-    return render_template('p_sinteticas.html')
+    ruta_reprobacion,ruta_desercion,ruta_repitencia,ruta_pro_repro,ruta_pro_deser,ruta_pro_repit = ps.proyecciones_sinteticas()
+    return render_template('p_sinteticas.html',ruta_reprobacion=ruta_reprobacion,ruta_desercion=ruta_desercion,ruta_repitencia=ruta_repitencia,ruta_pro_repro=ruta_pro_repro,ruta_pro_deser=ruta_pro_deser,ruta_pro_repit=ruta_pro_repit)
 
 @app.route('/Subir_Archivo_CSV')
 def cargar():

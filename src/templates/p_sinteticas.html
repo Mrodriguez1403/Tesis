@@ -1,14 +1,45 @@
 {% extends "layout.html" %} {% block content %}
 
 <div class="jumbotron">
-    <h1 class="display-4">Graficas de Comparacion con el Metodo Restrospectivo de Regresion Lineal</h1>
-    <h2>Grafica de Reprobacion</h2>
-    <img src="{{ url_for('static', filename='file/p_s_reprobacion.png') }}" class="img-fluid" WIDTH="1200" HEIGHT="780" title="Grafica de Proyeccion hibrida de Reprobacion">
-    <h2>Grafica de Desercion</h2>
-    <img src="{{ url_for('static', filename='file/p_s_desercion.png') }}" class="img-fluid" WIDTH="1200" HEIGHT="780" title="Grafica de Proyeccion hibrida de Desercion">
-    <h2>Grafica de Repitencia</h2>
-    <img src="{{ url_for('static', filename='file/p_s_repitencia.png') }}" class="img-fluid" WIDTH="1200" HEIGHT="780" title="Grafica de Proyeccion hibrida de Repitencia">
+    <h2>Regresiones y Proyecciones Sinteticas</h2>
+    <br>
+    <div class="row">
+        <div class="col-xs-12 col-xl">
+            <h5>Grafica de Regresion Sintetica de la Tasa de Reprobacion en los Periodos Academicos 1970 - 2019</h5>
+            <br>
+            <img src="{{ruta_reprobacion}}" class="img-fluid" WIDTH="600" HEIGHT="400" title="Grafica sintetica de Regresion de Reprobacion">
+        </div>
+        <div class="col-xs-12 col-xl">
+            <h5>Grafica de Proyeccion Sintetica de la Tasa de Reprobacion en los Periodos Academicos 2020 - 2024</h5>
+            <br>
+            <img src="{{ruta_pro_repro}}" class="img-fluid" WIDTH="600" HEIGHT="400" title="Grafica sintetica de Proyeccion de Reprobacion">
+        </div>
+    </div>
 
+    <div class="row">
+        <div class="col-xs-12 col-xl">
+            <h5>Grafica de Regresion Sintetica de la Tasa de Desercion en los Periodos Academicos 1970 - 2019</h5>
+            <br>
+            <img src="{{ruta_desercion}}" class="img-fluid" WIDTH="600" HEIGHT="400" title="Grafica sintetica de Regresion de Desercion">
+        </div>
+        <div class="col-xs-12 col-xl">
+            <h5>Grafica de Proyeccion Sintetica de la Tasa de Desercion en los Periodos Academicos 2020 - 2024</h5>
+            <br>
+            <img src="{{ruta_pro_deser}}" class="img-fluid" WIDTH="600" HEIGHT="400" title="Grafica sintetica de Proyeccion de Desercion">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-xl">
+            <h5>Grafica de Regresion Sintetica de la Tasa de Repitencia en los Periodos Academicos 1970 - 2019</h5>
+            <br>
+            <img src="{{ruta_repitencia}}" class="img-fluid" WIDTH="600" HEIGHT="400" title="Grafica sintetica de Regresion de Repitencia">
+        </div>
+        <div class="col-xs-12 col-xl">
+            <h5>Grafica de Proyeccion Sintetica de la Tasa de Repitencia en los Periodos Academicos 2020 - 2024</h5>
+            <br>
+            <img src="{{ruta_pro_repit}}" class="img-fluid" WIDTH="600" HEIGHT="400" title="Grafica sintetica de Proyeccion de Repitencia">
+        </div>
+    </div>
 
 </div>
 
