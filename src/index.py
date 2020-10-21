@@ -115,6 +115,13 @@ def Pro_repitencia():
     lista = pn.cargar_lista_reprobacion()
     return render_template('pro_repitencia.html',lista = lista)
 
+@app.route("/Pro_General")
+def Pro_General():
+    ruta_repro="static/file/proyecciones/proyeccion_reprobacion.png"
+    ruta_deser="static/file/proyecciones/proyeccion_desercion.png"
+    ruta_repit="static/file/proyecciones/proyeccion_repitencia.png"
+    return render_template('pro_general.html',ruta_repro = ruta_repro,ruta_deser=ruta_deser,ruta_repit=ruta_repit)
+
 
 @app.route("/run_pro_repro", methods=['GET', 'POST'])
 def run_pro_repor():

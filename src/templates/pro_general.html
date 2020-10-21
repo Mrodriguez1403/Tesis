@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Last-Modified" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <title>Proyecciones General</title>
+</head>
+
+<body>
+    {% extends "layout.html" %} {% block content %}
+    <h2>Graficas de Poyecciones de la Tasas de Riesgo en los periodos 2020 - 2024</h2>
+    <br>
+    <div class="row">
+        <div class="col-xs-12 col-sm-4">
+            <h5>Proyeccion de Reprobacion</h5>
+            <br>
+            <img src="{{ruta_repro}}" class="img-fluid" WIDTH="600" HEIGHT="400" title="Grafica de Proyeccion de Reprobacion">
+        </div>
+        <div class="col-xs-12 col-sm-4">
+            <h5>Proyeccion de Desercion</h5>
+            <br>
+            <img src="{{ruta_deser}}" class="img-fluid" WIDTH="600" HEIGHT="400" title="Grafica de Proyeccion de Desercion">
+        </div>
+        <div class="col-xs-12 col-sm-4">
+            <h5>Proyeccion de Repitencia</h5>
+            <br>
+            <img src="{{ruta_repit}}" class="img-fluid" WIDTH="600" HEIGHT="400" title="Grafica de Proyeccion de Repitencia">
+        </div>
+    </div>
+
+    {% endblock %}
+
+</body>
+
+</html>
