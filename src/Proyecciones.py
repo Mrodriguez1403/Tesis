@@ -1,14 +1,17 @@
-import matplotlib.pyplot as plt
-import numpy as np
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression,Lasso, Ridge
-from joblib import dump, load
-import pandas as pd
-from sklearn.metrics import mean_squared_error
-from numpy import savetxt, loadtxt
-import datetime
-import os, shutil
+# librerias importadas para la realizacion de las regresiones lineales y sus respectivas proyecciones
 
+import matplotlib.pyplot as plt # libreria para graficar funciones
+import numpy as np # libreria procesos estadisticos
+from sklearn.model_selection import train_test_split # libreria de entrenamiento de los datos
+from sklearn.linear_model import LinearRegression,Lasso, Ridge #libreria de los modelos de regresiones
+from joblib import dump, load # libreria para guardar y cargar modelos de regresion
+import pandas as pd # libreria de procesos estadisticos
+from sklearn.metrics import mean_squared_error # libreria para hallar en minimo cuadrado
+from numpy import savetxt, loadtxt # libreria para guardar y cargar archivios csv
+import datetime # libreria para obtener fecha 
+import os, shutil # librerias para aceder, crear y modificar directorios 
+
+# funciones para obtener la rutas de los modelos selecionados y guardarlos en un lista ------------------------------------------------------------
 def cargar_rutas_reprobacion():
     R  = loadtxt('Modelos/Rutas/ruta_reprobacion.csv', dtype="str", delimiter=',')
     return R
@@ -21,6 +24,7 @@ def cargar_rutas_repitencia():
     R  = loadtxt('Modelos/Rutas/ruta_repitencia.csv', dtype="str", delimiter=',')
     return R
 
+# funciones para cargar los datos de los modelos seleccionados y guardarlos en un lista --------------------------------------------------------------
 def cargar_datos_Selecionados_repro(ruta_datos):
     M = loadtxt(ruta_datos+"/modelo_r_reprobacion.csv",dtype="str", delimiter=',')
     return M
@@ -33,6 +37,7 @@ def cargar_datos_Selecionados_repit(ruta_datos):
     M = loadtxt(ruta_datos+"/modelo_r_repitencia.csv",dtype="str", delimiter=',')
     return M
 
+# funciones para obtener las direcciones de los datos y grafica en las rutas de los modelos seleccionados ----------------------------------------------
 def buscar_rutas_reprobacion(nombre_modelo):
     R = cargar_rutas_reprobacion()
     indice = 0
@@ -67,8 +72,7 @@ def buscar_rutas_repitencia(nombre_modelo):
     return ruta_datos,ruta_grafica
 
 
-
-
+#  funciones para agregar un ruta a la lista de las rutas de los modelos seleccionados ------------------------------------------------------------
 def cargar_lista_reprobacion():
     R  = cargar_rutas_reprobacion()
     lista = []
@@ -90,6 +94,7 @@ def cargar_lista_repitencia():
         lista.append(R[i])
     return lista
 
+# funciones para obtener la direccion del modelo en las rutas de los modelos seleccionados --------------------------------------------------------
 def buscar_modelo_reprobacion(nombre_modelo):
     R = cargar_rutas_reprobacion()
     indice = 0
@@ -117,6 +122,7 @@ def buscar_modelo_repitencia(nombre_modelo):
     ruta_modelo = R[indice+1]
     return ruta_modelo
 
+# funciones para cargar los datos entrenados y guardarlos en un lista --------------------------------------------------
 def cargar_datos_reporbacion():
     M = loadtxt('Modelos/Datos_entrenados/modelo_r_reprobacion.csv', delimiter=',')
     return M
@@ -129,6 +135,7 @@ def cargar_datos_repitencia():
     M = loadtxt('Modelos/Datos_entrenados/modelo_r_repitencia.csv', delimiter=',')
     return M
 
+# funciones para eliminar los modelos entrenados -------------------------------------------------------------------------
 def elimiar_modelos_reprobacion():
     os.remove('Modelos/Entrenados/lr_reprobacion.pkl')
     os.remove('Modelos/Entrenados/rgl_reprobacion.pkl')
@@ -145,7 +152,7 @@ def elimiar_modelos_repitencia():
     os.remove('Modelos/Entrenados/rgr_repitencia.pkl')
 
 
-
+# funciones para guardar los rutas,modelos, datos y graficas seleccionados en sus respectivos directorios --------------------------------------------------------------------------------------------
 def guardar_modelo_reprobacion():
     lr= LinearRegression()
     rgl = Lasso(alpha=.5)
@@ -266,6 +273,7 @@ def guardar_modelo_repitencia():
         savetxt(dest_r, ruta, fmt="%s" ,delimiter=',')
  
 
+# funciones de proyecciones de los modelos seleccionados en los soguientes 5 periodos academicos -------------------------------------------------------------------------------------------
 def Proyeccion_modelo_reprobacion(nombre_modelo):
     ruta_modelo = buscar_modelo_reprobacion(nombre_modelo)
     ruta_grafica = "static/file/proyecciones/proyeccion_reprobacion.png"
@@ -363,7 +371,7 @@ def Proyeccion_modelo_repitencia(nombre_modelo):
     return ruta_grafica
   
 
-
+# funciones de regresion por los metodos lineal, lasso y ridge -------------------------------------------- 
 def proyeccion_reprobacion():
     datos=pd.read_csv('Datos/Datos_MEN.csv',header=0)
     # obtenemos la columna año de los datos

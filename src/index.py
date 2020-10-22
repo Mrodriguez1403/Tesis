@@ -8,76 +8,85 @@ import Proyecciones_sinteticas as ps
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER']="./Datos"
 
+# funcion para acceder a la ruta de la informacion del proyecto --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 @app.route('/')
 def info():
    return render_template('info.html')
 
+# funcion para acceder a la ruta de las graficas de las tasas de riesgo -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 @app.route('/graficas_riesgo')
 def graficas_riesgo():
    return render_template('index.html')
 
+# funcion para accder a la ruta de las regresiones reales --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 @app.route('/Proyecciones_reales')
 def p_reales():
     return render_template('p_reales.html')
 
-
+# funcion para acceder a la ruta de las regresiones y proyecciones sinteticas ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 @app.route('/Proyecciones_sinteticas')
 def p_sinteticas():
     ruta_reprobacion,ruta_desercion,ruta_repitencia,ruta_pro_repro,ruta_pro_deser,ruta_pro_repit = ps.proyecciones_sinteticas()
     return render_template('p_sinteticas.html',ruta_reprobacion=ruta_reprobacion,ruta_desercion=ruta_desercion,ruta_repitencia=ruta_repitencia,ruta_pro_repro=ruta_pro_repro,ruta_pro_deser=ruta_pro_deser,ruta_pro_repit=ruta_pro_repit)
 
+# funcion para acceder a la ruta de SUBIR la Data MEN al proyecto ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 @app.route('/Subir_Archivo_CSV')
 def cargar():
     return render_template('cargar.html')
 
+# funcion para subir la Data MEN al proyecto ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 @app.route("/upload", methods=['POST'])
 def uploader():
   if request.method == 'POST':
      f = request.files['archivo_csv']
      filename = secure_filename(f.filename)
      f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-     return render_template('test.html')
+     return render_template('cargar.html')
 
-@app.route("/test")
-def test():
-     return render_template('test.html')
+# @app.route("/test")
+# def test():
+#      return render_template('test.html')
 
+# funcion para acceder a la ruta de regresion de reprobacion ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 @app.route('/Reg_reprobacion')
 def Reg_reprobacion():
     M = pn.cargar_datos_reporbacion()
     return render_template('Reg_Reprobacion.html',m_coe=M[0],m_mse=M[1],m_ve=M[2],l_coe=M[3],l_mse=M[4],l_ve=M[5],r_coe=M[6],r_mse=M[7],r_ve=M[8])
    
-
+# funcion para acceder a la ruta de regresion de desercion ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 @app.route('/Reg_desercion')
 def Reg_desercion():
     M = pn.cargar_datos_desercion()
     return render_template('Reg_Desercion.html',m_coe=M[0],m_mse=M[1],m_ve=M[2],l_coe=M[3],l_mse=M[4],l_ve=M[5],r_coe=M[6],r_mse=M[7],r_ve=M[8])
    
-
+# funcion para acceder a la ruta de regresion de repitencia ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 @app.route('/Reg_repitencia')
 def Reg_repitencia():
     M = pn.cargar_datos_repitencia()
     return render_template('Reg_Repitencia.html',m_coe=M[0],m_mse=M[1],m_ve=M[2],l_coe=M[3],l_mse=M[4],l_ve=M[5],r_coe=M[6],r_mse=M[7],r_ve=M[8])
    
-
+# funcion para realizar la regresion dee reprobacion ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 @app.route("/run2", methods=['GET'])
 def run_reg_reprobacion():
     if request.method == 'GET':
         m_coe,m_mse,m_ve,l_coe,l_mse,l_ve,r_coe,r_mse,r_ve = pn.proyeccion_reprobacion()
         return render_template('Reg_Reprobacion.html',m_coe=m_coe,m_mse=m_mse,m_ve=m_ve,l_coe=l_coe,l_mse=l_mse,l_ve=l_ve,r_coe=r_coe,r_mse=r_mse,r_ve=r_ve)
 
+# funcion para realizar la regresion dee desercion ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 @app.route("/run3", methods=['GET'])
 def run_reg_desercion():
     if request.method == 'GET':
         m_coe,m_mse,m_ve,l_coe,l_mse,l_ve,r_coe,r_mse,r_ve = pn.proyeccion_desercion()
         return render_template('Reg_Desercion.html',m_coe=m_coe,m_mse=m_mse,m_ve=m_ve,l_coe=l_coe,l_mse=l_mse,l_ve=l_ve,r_coe=r_coe,r_mse=r_mse,r_ve=r_ve)
 
+# funcion para realizar la regresion dee repitencia ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 @app.route("/run4", methods=['GET'])
 def run_reg_repitencia():
     if request.method == 'GET':
         m_coe,m_mse,m_ve,l_coe,l_mse,l_ve,r_coe,r_mse,r_ve = pn.proyeccion_repitencia()
         return render_template('Reg_Repitencia.html',m_coe=m_coe,m_mse=m_mse,m_ve=m_ve,l_coe=l_coe,l_mse=l_mse,l_ve=l_ve,r_coe=r_coe,r_mse=r_mse,r_ve=r_ve)
 
+# funcion para guardar el modelo seleccionado de reprobacion ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 @app.route("/guardar_reprobacion", methods=['GET'])
 def guardar_reprobacion():
     if request.method == 'GET':
@@ -86,6 +95,7 @@ def guardar_reprobacion():
         M = pn.cargar_datos_reporbacion()
         return render_template('Reg_Reprobacion.html',m_coe=M[0],m_mse=M[1],m_ve=M[2],l_coe=M[3],l_mse=M[4],l_ve=M[5],r_coe=M[6],r_mse=M[7],r_ve=M[8])
 
+# funcion para guardar el modelo seleccionado de desercion ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 @app.route("/guardar_desercion", methods=['GET'])
 def guardar_desercion():
     if request.method == 'GET':
@@ -94,6 +104,7 @@ def guardar_desercion():
         M = pn.cargar_datos_desercion()
         return render_template('Reg_Desercion.html',m_coe=M[0],m_mse=M[1],m_ve=M[2],l_coe=M[3],l_mse=M[4],l_ve=M[5],r_coe=M[6],r_mse=M[7],r_ve=M[8])
 
+# funcion para guardar el modelo seleccionado de repitencia ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 @app.route("/guardar_repitencia", methods=['GET'])
 def guardar_repitencia():
     if request.method == 'GET':
@@ -102,21 +113,24 @@ def guardar_repitencia():
         M = pn.cargar_datos_repitencia()
         return render_template('Reg_Repitencia.html',m_coe=M[0],m_mse=M[1],m_ve=M[2],l_coe=M[3],l_mse=M[4],l_ve=M[5],r_coe=M[6],r_mse=M[7],r_ve=M[8])
 
+#funcion para acceder a la ruta de proyeccion de reprobacion -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 @app.route("/Pro_reprobacion")
 def Pro_reprobacion():
     lista = pn.cargar_lista_reprobacion()
     return render_template('pro_reprobacion.html',lista = lista)
-   
+
+#funcion para acceder a la ruta de proyeccion de desercion -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 @app.route("/Pro_desercion")
 def Pro_desercion():
     lista = pn.cargar_lista_desercion()
     return render_template('pro_desercion.html',lista = lista)
 
+#funcion para acceder a la ruta de proyeccion de repitencia -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 @app.route("/Pro_repitencia")
 def Pro_repitencia():
     lista = pn.cargar_lista_reprobacion()
     return render_template('pro_repitencia.html',lista = lista)
-
+#funcion para acceder a la ruta de proyecciones generales -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 @app.route("/Pro_General")
 def Pro_General():
     ruta_repro="static/file/proyecciones/proyeccion_reprobacion.png"
@@ -124,7 +138,7 @@ def Pro_General():
     ruta_repit="static/file/proyecciones/proyeccion_repitencia.png"
     return render_template('pro_general.html',ruta_repro = ruta_repro,ruta_deser=ruta_deser,ruta_repit=ruta_repit)
 
-
+#funcion para realizar la proyeccion de reprobacion del modelo seleccionado -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 @app.route("/run_pro_repro", methods=['GET', 'POST'])
 def run_pro_repor():
     select = request.form.get('lista_regresion')
@@ -135,6 +149,7 @@ def run_pro_repor():
     lista = pn.cargar_lista_reprobacion()
     return render_template('pro_reprobacion.html',lista = lista,ruta_grafica2=ruta_grafica2,ruta_grafica = ruta_grafica,m_coe=M[0],m_mse=M[1],m_ve=M[2],l_coe=M[3],l_mse=M[4],l_ve=M[5],r_coe=M[6],r_mse=M[7],r_ve=M[8])
 
+#funcion para realizar la proyeccion de desercion del modelo seleccionado -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 @app.route("/run_pro_deser", methods=['GET', 'POST'])
 def run_pro_deser():
     select = request.form.get('lista_regresion')
@@ -145,6 +160,7 @@ def run_pro_deser():
     lista = pn.cargar_lista_desercion()
     return render_template('pro_desercion.html',lista = lista,ruta_grafica2=ruta_grafica2,ruta_grafica = ruta_grafica,m_coe=M[0],m_mse=M[1],m_ve=M[2],l_coe=M[3],l_mse=M[4],l_ve=M[5],r_coe=M[6],r_mse=M[7],r_ve=M[8])
 
+#funcion para realizar la proyeccion de repitencia del modelo seleccionado -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 @app.route("/run_pro_repit", methods=['GET', 'POST'])
 def run_pro_repit():
     select = request.form.get('lista_regresion')
