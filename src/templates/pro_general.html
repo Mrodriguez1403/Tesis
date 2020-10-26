@@ -13,26 +13,27 @@
 
 <body>
     {% extends "layout.html" %} {% block content %}
-    <h2>Graficas de Poyecciones de la Tasas de Riesgo en los periodos 2020 - 2024</h2>
-    <br>
-    <div class="row">
-        <div class="col-xs-12 col-sm-4">
-            <h5>Proyeccion de Reprobacion</h5>
-            <br>
-            <img src="{{ruta_repro}}" class="img-fluid" WIDTH="600" HEIGHT="400" title="Grafica de Proyeccion de Reprobacion">
-        </div>
-        <div class="col-xs-12 col-sm-4">
-            <h5>Proyeccion de Desercion</h5>
-            <br>
-            <img src="{{ruta_deser}}" class="img-fluid" WIDTH="600" HEIGHT="400" title="Grafica de Proyeccion de Desercion">
-        </div>
-        <div class="col-xs-12 col-sm-4">
-            <h5>Proyeccion de Repitencia</h5>
-            <br>
-            <img src="{{ruta_repit}}" class="img-fluid" WIDTH="600" HEIGHT="400" title="Grafica de Proyeccion de Repitencia">
+    <div class="jumbotron">
+        <h2>Graficas de Poyecciones de la Tasas de Riesgo en los periodos 2020 - 2024</h2>
+        <br>
+        <div class="row">
+            <div class="col-xs-12 col-sm-4">
+                <h5>Proyeccion de Reprobacion</h5>
+                <br>
+                <img src="{{ruta_repro}}" class="img-fluid" WIDTH="600" HEIGHT="400" title="Grafica de Proyeccion de Reprobacion">
+            </div>
+            <div class="col-xs-12 col-sm-4">
+                <h5>Proyeccion de Desercion</h5>
+                <br>
+                <img src="{{ruta_deser}}" class="img-fluid" WIDTH="600" HEIGHT="400" title="Grafica de Proyeccion de Desercion">
+            </div>
+            <div class="col-xs-12 col-sm-4">
+                <h5>Proyeccion de Repitencia</h5>
+                <br>
+                <img src="{{ruta_repit}}" class="img-fluid" WIDTH="600" HEIGHT="400" title="Grafica de Proyeccion de Repitencia">
+            </div>
         </div>
     </div>
-
     {% endblock %}
 
 </body>

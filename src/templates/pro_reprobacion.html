@@ -10,67 +10,67 @@
 
 <body>
     {% extends "layout.html" %} {% block content %}
-
-    <div id="menu">
-        <label for="Regresiones">Proyectar Regresiones</label>
-        <br>
-        <form action="/run_pro_repro" method="POST">
-            <select name="lista_regresion" class="selectpicker form-control">
+    <div class="jumbotron">
+        <div id="menu">
+            <label for="Regresiones">Proyectar Regresiones</label>
+            <br>
+            <form action="/run_pro_repro" method="POST">
+                <select name="lista_regresion" class="selectpicker form-control">
                 <option disabled="">Seleccionar una opcion</option>
                 {% for e in lista %}
                 <option value= "{{ e }}" >{{ e }}</option>
                 {% endfor %}
             </select>
-            <p><input type="submit" class="btn btn-primary" value="Realizar Proyeccion"></p>
-        </form>
-    </div>
+                <p><input type="submit" class="btn btn-primary" value="Realizar Proyeccion"></p>
+            </form>
+        </div>
 
-    <div class="row">
-        <div class="col-xs-12 col-xl">
-            <h5>Grafica de Regresion de la Tasa de Reprobacion en los Periodos Academicos 2011 - 2019</h5>
-            <br>
-            <img src="{{ruta_grafica}}" class="img-fluid" WIDTH="600" HEIGHT="400" title="Grafica de Proyeccion de Reprobacion">
-            <br>
-            <br>
-            <h4 style="text-align: center;">DATOS DEL MODELO DE REPROBACION</h4>
-            <div class="row">
-                <div class="col-xs-12 col-sm-4">
-                    <h5>Regresión Lineal</h5>
-                    <br>
-                    <label>Coeficiente : {{m_coe}}</label>
-                    <br>
-                    <label>Suma de Residuos al Cuadrado : {{m_mse}}</label>
-                    <br>
-                    <label>Varianza Explicada : {{m_ve}}</label>
+        <div class="row">
+            <div class="col-xs-12 col-xl">
+                <h5>Grafica de Regresion de la Tasa de Reprobacion en los Periodos Academicos 2011 - 2019</h5>
+                <br>
+                <img src="{{ruta_grafica}}" class="img-fluid" WIDTH="600" HEIGHT="400" title="Grafica de Proyeccion de Reprobacion">
+                <br>
+                <br>
+                <h4 style="text-align: center;">DATOS DEL MODELO DE REPROBACION</h4>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4">
+                        <h5>Regresión Lineal</h5>
+                        <br>
+                        <label>Coeficiente : {{m_coe}}</label>
+                        <br>
+                        <label>Suma de Residuos al Cuadrado : {{m_mse}}</label>
+                        <br>
+                        <label>Varianza Explicada : {{m_ve}}</label>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        <h5>Regresión Lasso</h5>
+                        <br>
+                        <label>Coeficiente : {{l_coe}}</label>
+                        <br>
+                        <label>Suma de Residuos al Cuadrado : {{l_mse}}</label>
+                        <br>
+                        <label>Varianza Explicada : {{l_ve}}</label>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        <h5>Regresión Ridge</h5>
+                        <br>
+                        <label>Coeficiente : {{r_coe}}</label>
+                        <br>
+                        <label>Suma de Residuos al Cuadrado : {{r_mse}}</label>
+                        <br>
+                        <label>Varianza Explicada : {{r_ve}}</label>
+                    </div>
                 </div>
-                <div class="col-xs-12 col-sm-4">
-                    <h5>Regresión Lasso</h5>
-                    <br>
-                    <label>Coeficiente : {{l_coe}}</label>
-                    <br>
-                    <label>Suma de Residuos al Cuadrado : {{l_mse}}</label>
-                    <br>
-                    <label>Varianza Explicada : {{l_ve}}</label>
-                </div>
-                <div class="col-xs-12 col-sm-4">
-                    <h5>Regresión Ridge</h5>
-                    <br>
-                    <label>Coeficiente : {{r_coe}}</label>
-                    <br>
-                    <label>Suma de Residuos al Cuadrado : {{r_mse}}</label>
-                    <br>
-                    <label>Varianza Explicada : {{r_ve}}</label>
-                </div>
+
             </div>
-
-        </div>
-        <div class="col-xs-12 col-xl">
-            <h5>Grafica de Proyeccion de los Siguientes 5 Periodos Academicos</h5>
-            <br>
-            <img src="{{ruta_grafica2}}" class="img-fluid" WIDTH="600" HEIGHT="400" title="Grafica de Proyeccion de Reprobacion">
+            <div class="col-xs-12 col-xl">
+                <h5>Grafica de Proyeccion de los Siguientes 5 Periodos Academicos</h5>
+                <br>
+                <img src="{{ruta_grafica2}}" class="img-fluid" WIDTH="600" HEIGHT="400" title="Grafica de Proyeccion de Reprobacion">
+            </div>
         </div>
     </div>
-
     {% endblock %}
 </body>
 
