@@ -4,6 +4,8 @@ from werkzeug.utils import secure_filename
 import Proyecciones_reales as pr
 import Proyecciones as pn
 import Proyecciones_sinteticas as ps
+import grafica_real as gr
+import grafica_sintetica as gs
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER']="./Datos"
@@ -16,7 +18,10 @@ def info():
 # funcion para acceder a la ruta de las graficas de las tasas de riesgo -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 @app.route('/graficas_riesgo')
 def graficas_riesgo():
-   return render_template('index.html')
+    g_real = gr.generar_graficas_reales()
+    g_sint = gs.generar_graficas_sinteticas()
+    return render_template('index.html',g_real=g_real,g_sintetica=g_sint)
+   
 
 # funcion para accder a la ruta de las regresiones reales --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 @app.route('/Proyecciones_reales')
@@ -39,9 +44,11 @@ def cargar():
 def uploader():
   if request.method == 'POST':
      f = request.files['archivo_csv']
-     filename = secure_filename(f.filename)
+     filename = "Datos_MEN_2.csv"
      f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-     return render_template('cargar.html')
+     g_real = gr.generar_graficas_reales()
+     g_sint = gs.generar_graficas_sinteticas()
+     return render_template('index.html',g_real=g_real,g_sintetica=g_sint)
 
 # @app.route("/test")
 # def test():

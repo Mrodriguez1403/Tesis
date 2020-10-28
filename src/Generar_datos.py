@@ -21,12 +21,40 @@ men = min(y)
 men2 = min(y2)
 men3 = min(y3)
 
+def separacion_datos(lista):
+    s = []
+    for i in range(0,len(lista),1):
+        for x in range(len(lista)-1,0,-1):
+            se = abs(lista[x]-lista[i])
+            if se > 0:
+                s.append(se)
+    s_min = min(s)
+    s_max = np.mean(s)
+    return s_min,s_max
+
 def generar_datos(menor, mayor,z):
     d = []
-    for i in range(0, 41):
-        r = random.uniform(menor, mayor)
-        r = round(r, 4)
-        d.append(r)
+    ant = 0
+    s_min,s_max = separacion_datos(z)
+    print ("minima separacion = ",s_min)
+    print ("maxima separacion = ",s_max)
+    i = 0
+    while i < 41 :
+        if i == 0:
+            r = random.uniform(menor, mayor)
+            r = round(r, 4)
+            ant = r
+            d.append(r)
+            i+= 1
+        else:
+            r = random.uniform(menor, mayor)
+            se = abs(r - ant)
+            if s_min <= se <= s_max:
+                r = round(r, 4)
+                ant = r
+                d.append(r)
+                i+= 1
+
         
     for i in z:
         d.append(i)
@@ -43,15 +71,19 @@ for i in range(1970, 2020):
 
 
 print("--- PERIODOS ---")
+print("tamaño : ",len(periodos))
 print(periodos)
 print()
 print("--- REPROBACION ---")
+print("tamaño : ",len(datos_reprobacion))
 print(datos_reprobacion)
 print()
 print("--- DERSERCION ---")
+print("tamaño : ",len(datos_desercion))
 print(datos_desercion)
 print()
 print("--- REPITENCIA ---")
+print("tamaño : ",len(datos_repitencia))
 print(datos_repitencia)
 
 
