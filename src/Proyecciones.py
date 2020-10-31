@@ -3,7 +3,7 @@
 import matplotlib.pyplot as plt # libreria para graficar funciones
 import numpy as np # libreria procesos estadisticos
 from sklearn.model_selection import train_test_split # libreria de entrenamiento de los datos
-from sklearn.linear_model import LinearRegression,Lasso, Ridge #libreria de los modelos de regresiones
+from sklearn.linear_model import LinearRegression,LassoCV, RidgeCV,Lasso,Ridge #libreria de los modelos de regresiones
 from joblib import dump, load # libreria para guardar y cargar modelos de regresion
 import pandas as pd # libreria de procesos estadisticos
 from sklearn.metrics import mean_squared_error # libreria para hallar en minimo cuadrado
@@ -154,9 +154,9 @@ def elimiar_modelos_repitencia():
 
 # funciones para guardar los rutas,modelos, datos y graficas seleccionados en sus respectivos directorios --------------------------------------------------------------------------------------------
 def guardar_modelo_reprobacion():
-    lr= LinearRegression()
-    rgl = Lasso(alpha=.5)
-    rgr = Ridge(alpha=.5)
+    lr = LinearRegression()
+    rgl = LassoCV(cv=4)
+    rgr = RidgeCV(alphas=[0.1,0.2,0.5,1.0,3.0,5.0,10.0])
     lr = load('Modelos/Entrenados/lr_reprobacion.pkl')
     rgl = load('Modelos/Entrenados/rgl_reprobacion.pkl')
     rgr = load('Modelos/Entrenados/rgr_reprobacion.pkl')
@@ -193,9 +193,9 @@ def guardar_modelo_reprobacion():
 
 
 def guardar_modelo_desercion():
-    lr= LinearRegression()
-    rgl = Lasso(alpha=.5)
-    rgr = Ridge(alpha=.5)
+    lr = LinearRegression()
+    rgl = LassoCV(cv=4)
+    rgr = RidgeCV(alphas=[0.1,0.2,0.5,1.0,3.0,5.0,10.0])
     lr = load('Modelos/Entrenados/lr_desercion.pkl')
     rgl = load('Modelos/Entrenados/rgl_desercion.pkl')
     rgr = load('Modelos/Entrenados/rgr_desercion.pkl')
@@ -235,9 +235,9 @@ def guardar_modelo_desercion():
 
 
 def guardar_modelo_repitencia():
-    lr= LinearRegression()
-    rgl = Lasso(alpha=.5)
-    rgr = Ridge(alpha=.5)
+    lr = LinearRegression()
+    rgl = LassoCV(cv=4)
+    rgr = RidgeCV(alphas=[0.1,0.2,0.5,1.0,3.0,5.0,10.0])
     lr = load('Modelos/Entrenados/lr_repitencia.pkl')
     rgl = load('Modelos/Entrenados/rgl_repitencia.pkl')
     rgr = load('Modelos/Entrenados/rgr_repitencia.pkl')
@@ -277,9 +277,9 @@ def guardar_modelo_repitencia():
 def Proyeccion_modelo_reprobacion(nombre_modelo):
     ruta_modelo = buscar_modelo_reprobacion(nombre_modelo)
     ruta_grafica = "static/file/proyecciones/proyeccion_reprobacion.png"
-    lr= LinearRegression()
-    rgl = Lasso(alpha=.5)
-    rgr = Ridge(alpha=.5)
+    lr = LinearRegression()
+    rgl = LassoCV(cv=4)
+    rgr = RidgeCV(alphas=[0.1,0.2,0.5,1.0,3.0,5.0,10.0])
     lr = load(ruta_modelo+'/lr_reprobacion.pkl')
     rgl = load(ruta_modelo+'/rgl_reprobacion.pkl')
     rgr = load(ruta_modelo+'/rgr_reprobacion.pkl')
@@ -309,9 +309,9 @@ def Proyeccion_modelo_reprobacion(nombre_modelo):
 def Proyeccion_modelo_desercion(nombre_modelo):
     ruta_modelo = buscar_modelo_desercion(nombre_modelo)
     ruta_grafica = "static/file/proyecciones/proyeccion_desercion.png"
-    lr= LinearRegression()
-    rgl = Lasso(alpha=.5)
-    rgr = Ridge(alpha=.5)
+    lr = LinearRegression()
+    rgl = LassoCV(cv=4)
+    rgr = RidgeCV(alphas=[0.1,0.2,0.5,1.0,3.0,5.0,10.0])
     lr = load(ruta_modelo+'/lr_desercion.pkl')
     rgl = load(ruta_modelo+'/rgl_desercion.pkl')
     rgr = load(ruta_modelo+'/rgr_desercion.pkl')
@@ -341,9 +341,9 @@ def Proyeccion_modelo_desercion(nombre_modelo):
 def Proyeccion_modelo_repitencia(nombre_modelo):
     ruta_modelo = buscar_modelo_repitencia(nombre_modelo)
     ruta_grafica = "static/file/proyecciones/proyeccion_repitencia.png"
-    lr= LinearRegression()
-    rgl = Lasso(alpha=.5)
-    rgr = Ridge(alpha=.5)
+    lr = LinearRegression()
+    rgl = LassoCV(cv=4)
+    rgr = RidgeCV(alphas=[0.1,0.2,0.5,1.0,3.0,5.0,10.0])
     lr = load(ruta_modelo+'/lr_repitencia.pkl')
     rgl = load(ruta_modelo+'/rgl_repitencia.pkl')
     rgr = load(ruta_modelo+'/rgr_repitencia.pkl')
@@ -388,10 +388,15 @@ def proyeccion_reprobacion():
     # Reprobacion media
     X_train, X_test, y_train, y_test = train_test_split(X, y,test_size=0.5)
 
-    # Reprobacion media
-    lr= LinearRegression()
-    rgl = Lasso(alpha=.5)
-    rgr = Ridge(alpha=.5)
+    # # Reprobacion media
+    # lr= LinearRegression()
+    # rgl = Lasso(alpha=.5)
+    # rgr = Ridge(alpha=.5)
+
+    # Se crean los modelos lineales
+    lr = LinearRegression()
+    rgl = LassoCV(cv=4)
+    rgr = RidgeCV(alphas=[0.1,0.2,0.5,1.0,3.0,5.0,10.0])
     
     # #entreno el modelo
 
@@ -418,10 +423,11 @@ def proyeccion_reprobacion():
     m_coe =lr.coef_
     print('Coeficientes:',lr.coef_)
     # MSE
-    m_mse = "{0:.4f}".format(np.mean((y_pred - y_test) ** 2))
-    print("Residual sum of squares: %.2f"% np.mean((y_pred - y_test) ** 2))
+    m_mse = "{0:.4f}".format(np.mean((lr.predict(X_test) - y_test) ** 2))
+    print("Residual sum of squares: %.2f"% np.mean((lr.predict(X_test) - y_test) ** 2))
     # Varianza explicada
-    m_ve = "{0:.4f}".format(lr.score(X_test,y_test))
+    m_ve = "{0:.4f}".format(abs(lr.score(X_test,y_test)))
+    
     print('Varianza explicada: %.2f\n' % lr.score(X_test,y_test))
 
     print('Regresión Lasso') 
@@ -429,10 +435,10 @@ def proyeccion_reprobacion():
     l_coe =  rgl.coef_
     print('Coeficientes:', rgl.coef_)
     # MSE
-    l_mse = "{0:.4f}".format(np.mean((y_predrgl - y_test) ** 2))
-    print("Residual sum of squares: %.2f"% np.mean((y_predrgl - y_test) ** 2))
+    l_mse = "{0:.4f}".format(np.mean((rgl.predict(X_test) - y_test) ** 2))
+    print("Residual sum of squares: %.2f"% np.mean((rgl.predict(X_test) - y_test) ** 2))
     # Varianza explicada
-    l_ve = "{0:.4f}".format(rgl.score(X_test, y_test))
+    l_ve = "{0:.4f}".format(abs(rgl.score(X_test, y_test)))
     print('Varianza explicada: %.2f\n' % rgl.score(X_test, y_test))
 
     print('Regresión Ridge')
@@ -440,10 +446,10 @@ def proyeccion_reprobacion():
     r_coe = rgr.coef_
     print('Coeficientes:', rgr.coef_)
     # MSE
-    r_mse = "{0:.4f}".format(np.mean((y_predrgr - y_test) ** 2))
-    print("Residual sum of squares: %.2f"% np.mean((y_predrgr - y_test) ** 2))
+    r_mse = "{0:.4f}".format((np.mean(rgr.predict(X_test) - y_test) ** 2))
+    print("Residual sum of squares: %.2f"% np.mean((rgr.predict(X_test) - y_test) ** 2))
     # Varianza explicada
-    r_ve = "{0:.4f}".format(rgr.score(X_test,y_test))
+    r_ve = "{0:.4f}".format(abs(rgr.score(X_test,y_test)))
     print('Varianza explicada: %.2f\n' % rgr.score(X_test,y_test))
 
     fig1 = plt.figure(figsize=(12,8), dpi=120)
@@ -497,10 +503,15 @@ def proyeccion_desercion():
 
     # definicion del algoritmo a utilizar
 
-    # Desercion media
-    lr2= LinearRegression()
-    rgl2 = Lasso(alpha=.5)
-    rgr2 = Ridge(alpha=.5)
+    # # Desercion media
+    # lr2= LinearRegression()
+    # rgl2 = Lasso(alpha=.5)
+    # rgr2 = Ridge(alpha=.5)
+
+    # Se crean los modelos lineales
+    lr2 = LinearRegression()
+    rgl2 = LassoCV(cv=4)
+    rgr2 = RidgeCV(alphas=[0.1,0.2,0.5,1.0,3.0,5.0,10.0])
 
     # #entreno el modelo
 
@@ -529,10 +540,10 @@ def proyeccion_desercion():
     m_coe = lr2.coef_
     print('Coeficientes:',lr2.coef_)
     # MSE
-    m_mse = "{0:.4f}".format(np.mean((y_pred2 - y_test2) ** 2))
-    print("Residual sum of squares: %.2f"% np.mean((y_pred2 - y_test2) ** 2))
+    m_mse = "{0:.4f}".format(np.mean((lr2.predict(X_test2) - y_test2) ** 2))
+    print("Residual sum of squares: %.2f"% np.mean((lr2.predict(X_test2) - y_test2) ** 2))
     # Varianza explicada
-    m_ve = "{0:.4f}".format(lr2.score(X_test2,y_test2))
+    m_ve = "{0:.4f}".format(abs(lr2.score(X_test2,y_test2)))
     print('Varianza explicada: %.2f\n' % lr2.score(X_test2,y_test2))
 
     print('Regresión Lasso') 
@@ -540,10 +551,10 @@ def proyeccion_desercion():
     l_coe = rgl2.coef_
     print('Coeficientes:', rgl2.coef_)
     # MSE
-    l_mse = "{0:.4f}".format(np.mean((y_predrgl2 - y_test2) ** 2))
-    print("Residual sum of squares: %.2f"% np.mean((y_predrgl2 - y_test2) ** 2))
+    l_mse = "{0:.4f}".format(np.mean((rgl2.predict(X_test2) - y_test2) ** 2))
+    print("Residual sum of squares: %.2f"% np.mean((rgl2.predict(X_test2) - y_test2) ** 2))
     # Varianza explicada
-    l_ve = "{0:.4f}".format(rgl2.score(X_test2, y_test2))
+    l_ve = "{0:.4f}".format(abs(rgl2.score(X_test2, y_test2)))
     print('Varianza explicada: %.2f\n' % rgl2.score(X_test2, y_test2))
 
     print('Regresión Ridge')
@@ -551,10 +562,10 @@ def proyeccion_desercion():
     r_coe = rgr2.coef_
     print('Coeficientes:', rgr2.coef_)
     # MSE
-    r_mse = "{0:.4f}".format(np.mean((y_predrgr2 - y_test2) ** 2))
-    print("Residual sum of squares: %.2f"% np.mean((y_predrgr2 - y_test2) ** 2))
+    r_mse = "{0:.4f}".format(np.mean((rgr2.predict(X_test2) - y_test2) ** 2))
+    print("Residual sum of squares: %.2f"% np.mean((rgr2.predict(X_test2) - y_test2) ** 2))
     # Varianza explicada
-    r_ve = "{0:.4f}".format(rgr2.score(X_test2,y_test2))
+    r_ve = "{0:.4f}".format(abs(rgr2.score(X_test2,y_test2)))
     print('Varianza explicada: %.2f\n' % rgr2.score(X_test2,y_test2))
 
     fig2 = plt.figure(figsize=(12,8), dpi=120)
@@ -605,10 +616,16 @@ def proyeccion_repitencia():
 
     #definicion del algoritmo a utilizar
 
-    # Repitencia media
-    lr3= LinearRegression()
-    rgl3 = Lasso(alpha=.5)
-    rgr3 = Ridge(alpha=.5)
+    # # Repitencia media
+    # lr3 = LinearRegression()
+    # rgl3 = Lasso(alpha=.5)
+    # rgr3 = Ridge(alpha=.5)
+
+    # Se crean los modelos lineales
+    lr3 = LinearRegression()
+    rgl3 = LassoCV(cv=4)
+    rgr3 = RidgeCV(alphas=[0.1,0.2,0.5,1.0,3.0,5.0,10.0])
+
 
     # #entreno el modelo
 
@@ -638,10 +655,10 @@ def proyeccion_repitencia():
     m_coe = lr3.coef_
     print('Coeficientes:',lr3.coef_)
     # MSE
-    m_mse = "{0:.4f}".format(np.mean((y_pred3 - y_test3) ** 2))
-    print("Residual sum of squares: %.2f"% np.mean((y_pred3 - y_test3) ** 2))
+    m_mse = "{0:.4f}".format(np.mean((lr3.predict(X_test3) - y_test3) ** 2))
+    print("Residual sum of squares: %.2f"% np.mean((lr3.predict(X_test3) - y_test3) ** 2))
     # Varianza explicada
-    m_ve = "{0:.4f}".format(lr3.score(X_test3,y_test3))
+    m_ve = "{0:.4f}".format(abs(lr3.score(X_test3,y_test3)))
     print('Varianza explicada: %.2f\n' % lr3.score(X_test3,y_test3))
 
     print('Regresión Lasso') 
@@ -649,10 +666,10 @@ def proyeccion_repitencia():
     l_coe =  rgl3.coef_
     print('Coeficientes:', rgl3.coef_)
     # MSE
-    l_mse = "{0:.4f}".format(np.mean((y_predrgl3 - y_test3) ** 2))
-    print("Residual sum of squares: %.2f"% np.mean((y_predrgl3 - y_test3) ** 2))
+    l_mse = "{0:.4f}".format((np.mean(rgl3.predict(X_test3) - y_test3) ** 2))
+    print("Residual sum of squares: %.2f"% np.mean((rgl3.predict(X_test3) - y_test3) ** 2))
     # Varianza explicada
-    l_ve = "{0:.4f}".format(rgl3.score(X_test3, y_test3))
+    l_ve = "{0:.4f}".format(abs(rgl3.score(X_test3, y_test3)))
     print('Varianza explicada: %.2f\n' % rgl3.score(X_test3, y_test3))
 
     print('Regresión Ridge')
@@ -660,10 +677,10 @@ def proyeccion_repitencia():
     r_coe = rgr3.coef_
     print('Coeficientes:', rgr3.coef_)
     # MSE
-    r_mse = "{0:.4f}".format(np.mean((y_predrgr3 - y_test3) ** 2))
-    print("Residual sum of squares: %.2f"% np.mean((y_predrgr3 - y_test3) ** 2))
+    r_mse = "{0:.4f}".format((np.mean(rgr3.predict(X_test3) - y_test3) ** 2))
+    print("Residual sum of squares: %.2f"% np.mean((rgr3.predict(X_test3) - y_test3) ** 2))
     # Varianza explicada
-    r_ve = "{0:.4f}".format(rgr3.score(X_test3,y_test3))
+    r_ve = "{0:.4f}".format(abs(rgr3.score(X_test3,y_test3)))
     print('Varianza explicada: %.2f\n' % rgr3.score(X_test3,y_test3))
 
 

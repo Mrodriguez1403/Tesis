@@ -132,8 +132,8 @@ def proyecciones_sinteticas():
     # m_coe =lr.coef_
     print('Coeficientes:',lr.coef_)
     # MSE
-    # m_mse = "{0:.4f}".format(np.mean((y_pred - y_test) ** 2))
-    print("Residual sum of squares: %.2f"% np.mean((y_pred - y_test) ** 2))
+    # m_mse = "{0:.4f}".format(np.mean((lr.predict(X_test) - y_test) ** 2))
+    print("Residual sum of squares: %.2f"% np.mean((lr.predict(X_test) - y_test) ** 2))
     # Varianza explicada
     # m_ve = "{0:.4f}".format(lr.score(X_test,y_test))
     print('Varianza explicada: %.2f\n' % lr.score(X_test,y_test))
@@ -143,8 +143,8 @@ def proyecciones_sinteticas():
     # l_coe =  rgl.coef_
     print('Coeficientes:', rgl.coef_)
     # MSE
-    # l_mse = "{0:.4f}".format(np.mean((y_predrgl - y_test) ** 2))
-    print("Residual sum of squares: %.2f"% np.mean((y_predrgl - y_test) ** 2))
+    # l_mse = "{0:.4f}".format(np.mean((rgl.predict(X_test) - y_test) ** 2))
+    print("Residual sum of squares: %.2f"% np.mean((rgl.predict(X_test) - y_test) ** 2))
     # Varianza explicada
     # l_ve = "{0:.4f}".format(rgl.score(X_test, y_test))
     print('Varianza explicada: %.2f\n' % rgl.score(X_test, y_test))
@@ -154,8 +154,8 @@ def proyecciones_sinteticas():
     # r_coe = rgr.coef_
     print('Coeficientes:', rgr.coef_)
     # MSE
-    # r_mse = "{0:.4f}".format(np.mean((y_predrgr - y_test) ** 2))
-    print("Residual sum of squares: %.2f"% np.mean((y_predrgr - y_test) ** 2))
+    # r_mse = "{0:.4f}".format(np.mean((rgr.predict(X_test) - y_test) ** 2))
+    print("Residual sum of squares: %.2f"% np.mean((rgr.predict(X_test) - y_test) ** 2))
     # Varianza explicada
     # r_ve = "{0:.4f}".format(rgr.score(X_test,y_test))
     print('Varianza explicada: %.2f\n' % rgr.score(X_test,y_test))
@@ -209,8 +209,8 @@ def proyecciones_sinteticas():
     # m_coe2 =lr2.coef_
     print('Coeficientes:',lr2.coef_)
     # MSE
-    # m_mse2 = "{0:.4f}".format(np.mean((y_pred2 - y_test2) ** 2))
-    print("Residual sum of squares: %.2f"% np.mean((y_pred2 - y_test2) ** 2))
+    # m_mse2 = "{0:.4f}".format(np.mean((lr2.predict(X_test2= - y_test2) ** 2))
+    print("Residual sum of squares: %.2f"% np.mean((lr2.predict(X_test2) - y_test2) ** 2))
     # Varianza explicada
     # m_ve2 = "{0:.4f}".format(lr2.score(X_test2,y_test2))
     print('Varianza explicada: %.2f\n' % lr2.score(X_test2,y_test2))
@@ -220,8 +220,8 @@ def proyecciones_sinteticas():
     # l_coe2 =  rgl2.coef_
     print('Coeficientes:', rgl2.coef_)
     # MSE
-    # l_mse2 = "{0:.4f}".format(np.mean((y_predrgl2 - y_test2) ** 2))
-    print("Residual sum of squares: %.2f"% np.mean((y_predrgl2 - y_test2) ** 2))
+    # l_mse2 = "{0:.4f}".format(np.mean(rgl2.predict(X_test2 - y_test2) ** 2))
+    print("Residual sum of squares: %.2f"% np.mean((rgl2.predict(X_test2) - y_test2) ** 2))
     # Varianza explicada
     # l_ve2 = "{0:.4f}".format(rgl2.score(X_test2, y_test2))
     print('Varianza explicada: %.2f\n' % rgl2.score(X_test2, y_test2))
@@ -231,8 +231,8 @@ def proyecciones_sinteticas():
     # r_coe2 = rgr2.coef_
     print('Coeficientes:', rgr2.coef_)
     # MSE
-    # r_mse2 = "{0:.4f}".format(np.mean((y_predrgr2 - y_test2) ** 2))
-    print("Residual sum of squares: %.2f"% np.mean((y_predrgr2 - y_test2) ** 2))
+    # r_mse2 = "{0:.4f}".format(np.mean((rgr2.predict(X_test2= - y_test2) ** 2))
+    print("Residual sum of squares: %.2f"% np.mean((rgr2.predict(X_test2) - y_test2) ** 2))
     # Varianza explicada
     # r_ve2 = "{0:.4f}".format(rgr2.score(X_test2,y_test2))
     print('Varianza explicada: %.2f\n' % rgr2.score(X_test2,y_test2))
@@ -285,8 +285,8 @@ def proyecciones_sinteticas():
     # m_coe3 =lr3.coef_
     print('Coeficientes:',lr3.coef_)
     # MSE
-    # m_mse3 = "{0:.4f}".format(np.mean((y_pred3 - y_test3) ** 2))
-    print("Residual sum of squares: %.2f"% np.mean((y_pred3 - y_test3) ** 2))
+    # m_mse3 = "{0:.4f}".format(np.mean((lr3.predict(X_test3) - y_test3) ** 2))
+    print("Residual sum of squares: %.2f"% np.mean((lr3.predict(X_test3) - y_test3) ** 2))
     # Varianza explicada
     # m_ve3 = "{0:.4f}".format(lr3.score(X_test3,y_test3))
     print('Varianza explicada: %.2f\n' % lr3.score(X_test3,y_test3))
@@ -296,8 +296,8 @@ def proyecciones_sinteticas():
     # l_coe3 =  rgl3.coef_
     print('Coeficientes:', rgl3.coef_)
     # MSE
-    # l_mse3 = "{0:.4f}".format(np.mean((y_predrgl3 - y_test3) ** 2))
-    print("Residual sum of squares: %.2f"% np.mean((y_predrgl3 - y_test3) ** 2))
+    # l_mse3 = "{0:.4f}".format(np.mean((rgl3.predict(X_test3) - y_test3) ** 2))
+    print("Residual sum of squares: %.2f"% np.mean((rgl3.predict(X_test3) - y_test3) ** 2))
     # Varianza explicada
     # l_ve3 = "{0:.4f}".format(rgl3.score(X_test3, y_test3))
     print('Varianza explicada: %.2f\n' % rgl3.score(X_test3, y_test3))
@@ -307,8 +307,8 @@ def proyecciones_sinteticas():
     # r_coe3 = rgr3.coef_
     print('Coeficientes:', rgr3.coef_)
     # MSE
-    # r_mse3 = "{0:.4f}".format(np.mean((y_predrgr3 - y_test3) ** 2))
-    print("Residual sum of squares: %.2f"% np.mean((y_predrgr3 - y_test3) ** 2))
+    # r_mse3 = "{0:.4f}".format(np.mean((rgr3.predict(X_test3) - y_test3) ** 2))
+    print("Residual sum of squares: %.2f"% np.mean((rgr3.predict(X_test3) - y_test3) ** 2))
     # Varianza explicada
     # r_ve3 = "{0:.4f}".format(rgr3.score(X_test3,y_test3))
     print('Varianza explicada: %.2f\n' % rgr3.score(X_test3,y_test3))
