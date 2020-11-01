@@ -6,6 +6,7 @@ import Proyecciones as pn
 import Proyecciones_sinteticas as ps
 import grafica_real as gr
 import grafica_sintetica as gs
+import reg_pro_aprobacion as rpa
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER']="./Datos"
@@ -16,13 +17,18 @@ def info():
    return render_template('info.html')
 
 # funcion para acceder a la ruta de las graficas de las tasas de riesgo -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+@app.route('/graficas_aprobacion')
+def graficas_aprobacion():
+    ruta_reg,ruta_pro = rpa.reg_pro_aprobacion()
+    return render_template('aprobacion.html',ruta_reg=ruta_reg,ruta_pro=ruta_pro)
+
+ # funcion para acceder a la ruta de las graficas de la tasa de aprobacion  
 @app.route('/graficas_riesgo')
 def graficas_riesgo():
     g_real = gr.generar_graficas_reales()
     g_sint = gs.generar_graficas_sinteticas()
     return render_template('index.html',g_real=g_real,g_sintetica=g_sint)
    
-
 # funcion para accder a la ruta de las regresiones reales --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 @app.route('/Proyecciones_reales')
 def p_reales():

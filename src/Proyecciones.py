@@ -415,8 +415,6 @@ def proyeccion_reprobacion():
     y_predrgl = rgl.predict(X_test)
     y_predrgr = rgr.predict(X_test)
 
-    print("X_test",X_test)
-
     print('DATOS DEL MODELO DE REPROBACION')
     print ('Regresión Mínimos Cuadrados Ordinarios')
     # Coeficiente

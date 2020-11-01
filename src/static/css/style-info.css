@@ -3,7 +3,7 @@
     height: 550px;
     position: absolute;
     left: 14%;
-    top: 50%;
+    top: 60%;
     transform: translateY(-50%);
     overflow: hidden;
 }
@@ -20,7 +20,7 @@
 
 .msg-col h1 {
     color: #fff;
-    font-size: 80px;
+    font-size: 58px;
     font-weight: 100;
     margin: 10px 0;
 }
@@ -29,6 +29,7 @@
     color: #ddd;
     font-size: 15px;
     line-height: 25px;
+    text-align: justify;
 }
 
 .msg-col a {
