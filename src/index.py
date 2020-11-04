@@ -50,7 +50,7 @@ def cargar():
 def uploader():
   if request.method == 'POST':
      f = request.files['archivo_csv']
-     filename = "Datos_MEN_2.csv"
+     filename = "Datos_MEN.csv"
      f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
      g_real = gr.generar_graficas_reales()
      g_sint = gs.generar_graficas_sinteticas()
