@@ -78,25 +78,25 @@ def Reg_repitencia():
     M = pn.cargar_datos_repitencia()
     return render_template('Reg_Repitencia.html',m_coe=M[0],m_mse=M[1],m_ve=M[2],l_coe=M[3],l_mse=M[4],l_ve=M[5],r_coe=M[6],r_mse=M[7],r_ve=M[8])
    
-# funcion para realizar la regresion dee reprobacion ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# funcion para realizar la regresion de reprobacion ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 @app.route("/run2", methods=['GET'])
 def run_reg_reprobacion():
     if request.method == 'GET':
-        m_coe,m_mse,m_ve,l_coe,l_mse,l_ve,r_coe,r_mse,r_ve = pn.proyeccion_reprobacion()
+        m_coe,m_mse,m_ve,l_coe,l_mse,l_ve,r_coe,r_mse,r_ve = pn.regresion_reprobacion()
         return render_template('Reg_Reprobacion.html',m_coe=m_coe,m_mse=m_mse,m_ve=m_ve,l_coe=l_coe,l_mse=l_mse,l_ve=l_ve,r_coe=r_coe,r_mse=r_mse,r_ve=r_ve)
 
-# funcion para realizar la regresion dee desercion ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# funcion para realizar la regresion de desercion ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 @app.route("/run3", methods=['GET'])
 def run_reg_desercion():
     if request.method == 'GET':
-        m_coe,m_mse,m_ve,l_coe,l_mse,l_ve,r_coe,r_mse,r_ve = pn.proyeccion_desercion()
+        m_coe,m_mse,m_ve,l_coe,l_mse,l_ve,r_coe,r_mse,r_ve = pn.regresion_desercion()
         return render_template('Reg_Desercion.html',m_coe=m_coe,m_mse=m_mse,m_ve=m_ve,l_coe=l_coe,l_mse=l_mse,l_ve=l_ve,r_coe=r_coe,r_mse=r_mse,r_ve=r_ve)
 
-# funcion para realizar la regresion dee repitencia ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# funcion para realizar la regresion de repitencia ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 @app.route("/run4", methods=['GET'])
 def run_reg_repitencia():
     if request.method == 'GET':
-        m_coe,m_mse,m_ve,l_coe,l_mse,l_ve,r_coe,r_mse,r_ve = pn.proyeccion_repitencia()
+        m_coe,m_mse,m_ve,l_coe,l_mse,l_ve,r_coe,r_mse,r_ve = pn.regresion_repitencia()
         return render_template('Reg_Repitencia.html',m_coe=m_coe,m_mse=m_mse,m_ve=m_ve,l_coe=l_coe,l_mse=l_mse,l_ve=l_ve,r_coe=r_coe,r_mse=r_mse,r_ve=r_ve)
 
 # funcion para guardar el modelo seleccionado de reprobacion ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

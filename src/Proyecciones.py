@@ -372,7 +372,7 @@ def Proyeccion_modelo_repitencia(nombre_modelo):
   
 
 # funciones de regresion por los metodos lineal, lasso y ridge -------------------------------------------- 
-def proyeccion_reprobacion():
+def regresion_reprobacion():
     datos=pd.read_csv('Datos/Datos_MEN.csv',header=0)
     # obtenemos la columna año de los datos
     datos['AÑO']=datos['AÑO'].astype('int64')
@@ -484,7 +484,7 @@ def proyeccion_reprobacion():
     return m_coe,m_mse,m_ve,l_coe,l_mse,l_ve,r_coe,r_mse,r_ve
 
 
-def proyeccion_desercion():
+def regresion_desercion():
     datos=pd.read_csv('Datos/Datos_MEN.csv',header=0)
     # obtenemos la columna año de los datos
     datos['AÑO']=datos['AÑO'].astype('int64')
@@ -597,7 +597,7 @@ def proyeccion_desercion():
     return m_coe,m_mse,m_ve,l_coe,l_mse,l_ve,r_coe,r_mse,r_ve
 
 
-def proyeccion_repitencia():
+def regresion_repitencia():
     datos=pd.read_csv('Datos/Datos_MEN.csv',header=0)
     # obtenemos la columna año de los datos
     datos['AÑO']=datos['AÑO'].astype('int64')
