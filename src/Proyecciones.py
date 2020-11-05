@@ -273,7 +273,7 @@ def guardar_modelo_repitencia():
         savetxt(dest_r, ruta, fmt="%s" ,delimiter=',')
  
 
-# funciones de proyecciones de los modelos seleccionados en los soguientes 5 periodos academicos -------------------------------------------------------------------------------------------
+# funciones de proyecciones de los modelos seleccionados en los siguientes 5 periodos academicos -------------------------------------------------------------------------------------------
 def Proyeccion_modelo_reprobacion(nombre_modelo):
     ruta_modelo = buscar_modelo_reprobacion(nombre_modelo)
     ruta_grafica = "static/file/proyecciones/proyeccion_reprobacion.png"
