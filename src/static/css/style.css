@@ -44,7 +44,7 @@ input.error {
 }
 
 #contenedor section.formulario header {
-    background-color: #18C0A9;
+    background-color: #7c4949;
     color: #fff;
     height: auto;
     margin: auto;
@@ -63,7 +63,7 @@ input.error {
 }
 
 #contenedor section.formulario section h2 {
-    border-bottom: #2ECD71 2px solid;
+    border-bottom: #7c4949 2px solid;
     font-size: 30px;
     margin: 0 auto;
     padding-bottom: 10px;
@@ -81,7 +81,7 @@ input.error {
 }
 
 #contenedor section.formulario section p input.separar_boton {
-    background: #2ECD71;
+    background: #7c4949;
     border-radius: 5px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
