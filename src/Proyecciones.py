@@ -425,7 +425,6 @@ def regresion_reprobacion():
     print("Residual sum of squares: %.2f"% np.mean((lr.predict(X_test) - y_test) ** 2))
     # Varianza explicada
     m_ve = "{0:.4f}".format(abs(lr.score(X_test,y_test)))
-    
     print('Varianza explicada: %.2f\n' % lr.score(X_test,y_test))
 
     print('Regresión Lasso') 
