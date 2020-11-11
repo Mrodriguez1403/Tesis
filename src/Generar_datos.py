@@ -70,23 +70,6 @@ for i in range(1970, 2020):
     periodos.append(i)
 
 
-print("--- PERIODOS ---")
-print("tamaño : ",len(periodos))
-print(periodos)
-print()
-print("--- REPROBACION ---")
-print("tamaño : ",len(datos_reprobacion))
-print(datos_reprobacion)
-print()
-print("--- DERSERCION ---")
-print("tamaño : ",len(datos_desercion))
-print(datos_desercion)
-print()
-print("--- REPITENCIA ---")
-print("tamaño : ",len(datos_repitencia))
-print(datos_repitencia)
-
-
 savetxt('Datos/datos_Reprobacion.csv', datos_reprobacion, delimiter=',')
 savetxt('Datos/datos_Desercion.csv', datos_desercion, delimiter=',')
 savetxt('Datos/datos_Repitencia.csv', datos_repitencia, delimiter=',')
