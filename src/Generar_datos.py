@@ -76,4 +76,3 @@ savetxt('Datos/datos_Repitencia.csv', datos_repitencia, delimiter=',')
 
 savetxt('Datos/Periodos.csv', periodos, delimiter=',')
 
-# d = loadtxt('datos_hibridos.csv',delimiter=',')
