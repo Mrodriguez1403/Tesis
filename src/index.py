@@ -185,5 +185,9 @@ def run_pro_repit():
     return render_template('pro_repitencia.html',lista = lista,ruta_grafica2=ruta_grafica2,ruta_grafica = ruta_grafica,m_coe=M[0],m_mse=M[1],m_ve=M[2],l_coe=M[3],l_mse=M[4],l_ve=M[5],r_coe=M[6],r_mse=M[7],r_ve=M[8])
 
 
+@app.route('/tutorial')
+def tutorial():
+   return render_template('tutorial.html')
+
 if __name__ == "__main__":
     app.run(debug=True)

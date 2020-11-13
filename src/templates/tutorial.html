@@ -1,0 +1,50 @@
+{% extends "layout.html" %} {% block content %}
+<div class="jumbotron">
+    <div class="tutorial">
+        <h1>Como Usar la Pagina Web</h1>
+        <div class="mensajes">
+            <p>Para aprender a utilizar la pagina web tienes que seguir los siguientes pasos:<br>1. Seleccionamos la sección de imp.Data MEN.</p>
+            <img src="{{ url_for('static', filename='file/tutorial/tutorial_1.PNG') }}" class="img-fluid" WIDTH="1080" HEIGHT="720">
+            <br>
+            <br>
+            <p>2. Le damos clic izquierdo al botón examinar.</p>
+            <img src="{{ url_for('static', filename='file/tutorial/tutorial_2.PNG') }}" class="img-fluid" WIDTH="1080" HEIGHT="720">
+            <br>
+            <br>
+            <p>3. Escogemos la data del ministerio de educación nacional previamente descargada y damos en abrir.</p>
+            <img src="{{ url_for('static', filename='file/tutorial/tutorial_3.PNG') }}" class="img-fluid" WIDTH="1080" HEIGHT="720">
+            <br>
+            <br>
+            <p>4. Le damos al boton enviar archvios para importar la data al proyecto.</p>
+            <img src="{{ url_for('static', filename='file/tutorial/tutorial_4.PNG') }}" class="img-fluid" WIDTH="1080" HEIGHT="720">
+            <br>
+            <br>
+            <p>5. Nos redirecciona al apartado de graficas de tendencias de riesgo, para continuar seleccionamos la sección de Reg. Reales, para comenzar con las regresiones.</p>
+            <img src="{{ url_for('static', filename='file/tutorial/tutorial_5.PNG') }}" class="img-fluid" WIDTH="1080" HEIGHT="720">
+            <br>
+            <br>
+            <p>6. Una vez seleccionada una sección, nos aparece la siguiente interfaz en donde para realizar la regresión utilizamos el botón regresión de reprobación. Después observamos el valor de la varianza explicada, entre mas cercano a 1 mayor precisión
+                tendrá la regresión, a continuación le damos al botón de guardar modelo para guardar la regresión.</p>
+            <img src="{{ url_for('static', filename='file/tutorial/tutorial_6.PNG') }}" class="img-fluid" WIDTH="1080" HEIGHT="720">
+            <br>
+            <br>
+            <p>7. A continuación pasamos al apartado de generar proyecciones y seleccionamos una de las secciones.</p>
+            <img src="{{ url_for('static', filename='file/tutorial/tutorial_7.PNG') }}" class="img-fluid" WIDTH="1080" HEIGHT="720">
+            <br>
+            <br>
+            <p>8. Luego en la interfaz de proyecciones se encuentra una lista desplegable de las regresiones que han sido guardadas anteriormente ordenadas por la fecha, escogemos una y realizamos la proyección.</p>
+            <img src="{{ url_for('static', filename='file/tutorial/tutorial_8.PNG') }}" class="img-fluid" WIDTH="1080" HEIGHT="720">
+            <br>
+            <br>
+            <p>9. Se muestra la gráfica de regresión con su información correspondiente al modelo, y a su lado derecho la gráfica de proyección para los siguientes 5 periodos académicos.</p>
+            <img src="{{ url_for('static', filename='file/tutorial/tutorial_9.PNG') }}" class="img-fluid" WIDTH="1080" HEIGHT="720">
+            <br>
+            <br>
+            <p>10. Al realizar el proceso de regresión y proyección con las demás secciones, vamos al apartado generar proyecciones – general, observaremos las gráficas de proyecciones de cada uno de los modelos de reprobación, deserción y repitencia.</p>
+            <img src="{{ url_for('static', filename='file/tutorial/tutorial_10.PNG') }}" class="img-fluid" WIDTH="1080" HEIGHT="720">
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
