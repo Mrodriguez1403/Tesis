@@ -2,14 +2,16 @@
 
 <div class="jumbotron">
 
-    <h2>Grafica de Repitencia</h2>
+    <h2 align='center'> Regresion de Repitencia </h2>
     <img src="{{ url_for('static', filename='file/proyeccion_repitencia_2.png') }}" class="img-fluid" WIDTH="1200" HEIGHT="780" title="Grafica de Proyeccion de Repitencia">
-    <a href="/run4" class="btn btn-primary" style="text-align: center;">Regresion de repitencia</a>
+    <div align='center'><a href="/run4" class="btn btn-primary" style="text-align: center;">Regresion de repitencia</a></div>
     <div class="container p-4">
-        <h1 style="text-align: center;">DATOS DEL MODELO DE REPITENCIA</h1>
+        <h1 style="text-align: center;">RESULTADOS DEL MODELO DE REPITENCIA</h1>
         <div class="row">
             <div class="col-xs-12 col-sm-4">
-                <h2>Regresión Lineal</h2>
+                <h2>
+                    <font color="0b13a4">Regresión Lineal</font>
+                </h2>
                 <br>
                 <h3>Coeficiente : {{m_coe}}</h3>
                 <br>
@@ -18,7 +20,9 @@
                 <h3>Varianza Explicada : {{m_ve}}</h3>
             </div>
             <div class="col-xs-12 col-sm-4">
-                <h2>Regresión Lasso</h2>
+                <h2>
+                    <font color="c7c416">Regresión Lasso</font>
+                </h2>
                 <br>
                 <h3>Coeficiente : {{l_coe}}</h3>
                 <br>
@@ -27,7 +31,9 @@
                 <h3>Varianza Explicada : {{l_ve}}</h3>
             </div>
             <div class="col-xs-12 col-sm-4">
-                <h2>Regresión Ridge</h2>
+                <h2>
+                    <font color="13a22d">Regresión Ridge</font>
+                </h2>
                 <br>
                 <h3>Coeficiente : {{r_coe}}</h3>
                 <br>
@@ -38,7 +44,7 @@
         </div>
 
     </div>
-    <a href="/guardar_repitencia" class="btn btn-primary" style="text-align: right;">Guardar Modelo</a>
+    <div align='center'><a href="/guardar_repitencia" class="btn btn-primary" style="text-align: right;">Guardar Modelo</a></div>
 </div>
 
 {% endblock %}

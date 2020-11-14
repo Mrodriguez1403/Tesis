@@ -12,7 +12,7 @@
     {% extends "layout.html" %} {% block content %}
     <div class="jumbotron">
         <div id="menu">
-            <label style="text-align: center;" for="Regresiones">Proyectar Regresiones</label>
+            <h2 for="Regresiones" align='center'>Proyeccion de Desercion</h2>
             <br>
             <form action="/run_pro_deser" method="POST">
                 <select name="lista_regresion" class="selectpicker form-control">
@@ -21,13 +21,14 @@
                 <option value= "{{ e }}" >{{ e }}</option>
                 {% endfor %}
             </select>
-                <p><input type="submit" class="btn btn-primary" value="Realizar Proyeccion"></p>
+                <br>
+                <p align='center'><input type="submit" class="btn btn-primary" value="Realizar Proyeccion"></p>
             </form>
         </div>
-
+        <br>
         <div class="row">
             <div class="col-xs-12 col-xl">
-                <h5>Grafica de Regresion de la Tasa de Desercion en los Periodos Academicos 2011 - 2019</h5>
+                <h5 align='center'>Grafica de Regresion de la Tasa de Desercion en los Periodos Academicos 2011 - 2019</h5>
                 <br>
                 <img src="{{ruta_grafica}}" class="img-fluid" WIDTH="600" HEIGHT="400" title="Grafica de Proyeccion de Reprobacion">
                 <br>
@@ -35,7 +36,9 @@
                 <h4 style="text-align: center;">DATOS DEL MODELO DE DESERCION</h4>
                 <div class="row">
                     <div class="col-xs-12 col-sm-4">
-                        <h5>Regresión Lineal</h5>
+                        <h5>
+                            <font color="0b13a4">Regresión Lineal</font>
+                        </h5>
                         <br>
                         <label>Coeficiente : {{m_coe}}</label>
                         <br>
@@ -44,7 +47,9 @@
                         <label>Varianza Explicada : {{m_ve}}</label>
                     </div>
                     <div class="col-xs-12 col-sm-4">
-                        <h5>Regresión Lasso</h5>
+                        <h5>
+                            <font color="c7c416">Regresión Lasso</font>
+                        </h5>
                         <br>
                         <label>Coeficiente : {{l_coe}}</label>
                         <br>
@@ -53,7 +58,9 @@
                         <label>Varianza Explicada : {{l_ve}}</label>
                     </div>
                     <div class="col-xs-12 col-sm-4">
-                        <h5>Regresión Ridge</h5>
+                        <h5>
+                            <font color="13a22d">Regresión Ridge</font>
+                        </h5>
                         <br>
                         <label>Coeficiente : {{r_coe}}</label>
                         <br>
@@ -65,7 +72,7 @@
 
             </div>
             <div class="col-xs-12 col-xl">
-                <h5>Grafica de Proyeccion de los Siguientes 5 Periodos Academicos</h5>
+                <h5 align='center'>Grafica de Proyeccion de los Siguientes 5 Periodos Academicos</h5>
                 <br>
                 <img src="{{ruta_grafica2}}" class="img-fluid" WIDTH="600" HEIGHT="400" title="Grafica de Proyeccion de Reprobacion">
             </div>
