@@ -8,6 +8,8 @@ import grafica_real as gr
 import grafica_sintetica as gs
 import reg_pro_aprobacion as rpa
 
+# software desarrollado por: Miguel Angel Rodriguez vesga, Jose Gerardo Chacon Rangel y Diego Alberto Botello Tarazona
+
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER']="./Datos"
 
